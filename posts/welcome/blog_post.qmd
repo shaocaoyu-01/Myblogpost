@@ -1,0 +1,24 @@
+---
+title: "Welcome To My Blog Template"
+author: "Caoyu_shao"
+date: "2025-10-08"
+categories: [articles]
+---
+
+
+Problem description
+Notable Delta, a kind of more transmissible variants of SARS-CoV-2 appeared and posed great challenges to initial quarantine system. Whether the quarantine system is valuable as before to control the outbreak of the epidemics. And the vaccines have been invented, if it is useful to take vaccines. The blog will investigate in the succeeded analysis and conclusions.
+
+
+
+Analysis
+
+
+
+
+Conclusion
+
+
+
+
+

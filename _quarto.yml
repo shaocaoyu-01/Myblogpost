@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "blog-template"
+  title: "Blog_Shao_Caoyu"
   navbar:
     right:
       - about.qmd
@@ -10,8 +10,13 @@ website:
         href: https://github.com/etc5523-2022
 format:
   html:
+    toc: true
+    toc-depth: 2
     theme: cosmo
     css: styles.css
 
 
 
+theme:
+  light: flatly
+  dark: darkly

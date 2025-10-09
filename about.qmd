@@ -1,13 +1,22 @@
 ---
+project: 
+  type: website
 title: "About"
-image: profile.jpg
+image: profile_picture.jpg
 about:
   template: jolla
   links:
     - icon: github
-      text: Github
-      href: https://github.com/etc5523-2022
+      text: "Github"
+      href: "https://github.com/shaocaoyu-01"
+    - icon: LinkIn
+      text: "LinkIn"
+      href: "www.linkedin.com/in/samuel-shao0058"
 
 ---
 
-This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
+I am now a master of Business Analytics in Monash University. I have learnt how to catch wild data, communicate with data, and data visualization..... I confirm that these skills could equip me for future careers.
+
+I have got my bachelor degree in Shan Dong University in China. My major was international finance and trade. On that days, I have learnt about the practices about international trades and some academic basis.
+
+I love coding and computer games. When i am energetic, I like to scratch the github for something interesting to equip my laptop. When i am tired, an exciting game will refresh me. I master python and R. I like dogs cause i think they are lovely and the symbol of loyalty. 
