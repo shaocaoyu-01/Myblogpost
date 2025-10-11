@@ -1,18 +1,15 @@
 ---
-project: 
-  type: website
 title: "About"
-image: profile_picture.jpg
-about:
-  template: jolla
-  links:
-    - icon: github
-      text: "Github"
-      href: "https://github.com/shaocaoyu-01"
-    - icon: LinkIn
-      text: "LinkIn"
-      href: "www.linkedin.com/in/samuel-shao0058"
-
+image:  profile_picture.jpg
+about: 
+   template: jolla
+   links:
+     - icon: github
+       text: Github
+       href: https://github.com/shaocaoyu-01
+     - icon: linkin
+       text: Linkin
+       href: https://www.linkedin.com/in/samuel-shao0058
 ---
 
 I am now a master of Business Analytics in Monash University. I have learnt how to catch wild data, communicate with data, and data visualization..... I confirm that these skills could equip me for future careers.

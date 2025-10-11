@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "posts/welcome/blog_post.html",
+    "href": "posts/welcome/blog_post.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Problem description\nEmerging SARS-CoV-2 variants with higher transmissibility (e.g., Delta) stress hotel-based quarantine. We evaluate a fixed quarantine protocol with a 14-day minimum stay and RT-PCR testing on days 3 and 12; detected cases are isolated for 10 days, and their close contacts receive a 14-day extension with tests on days 3 and 12. The facility hosts 100 travellers (arriving in close-contact groups of four) and 20 vaccinated workers who are RT-PCR tested on each workday (≈5 days/week). Contact controls reduce traveller-worker transmission by ×100 and worker-worker by ×10. We vary vaccine efficacy against transmission from 0–90% and transmissibility from R₀=3 (ancestral benchmark) to R₀=5–10 (Delta-plausible). Breach events are defined as instances where an infectious traveller or worker has unprotected contact with the community; performance is measured by the integrated force of infection from breaches and the outbreak risk/time derived from those breaches. We benchmark “acceptability” relative to the ancestral baseline (R₀=3, VE=0). The base infected-arrival rate is 1%, reduced to (1−VE)×1% for vaccinated cohorts. Within a 100-traveller, 20-worker facility using 14-day quarantine with RT-PCR on days 3 & 12 (cases: 10-day isolation; close contacts: 14-day extension with tests on days 3 & 12), base infected-arrival prevalence = 1% (scaled by 1−VE), and R₀ ∈ {3,5,…,10}, success = lower breach-induced community force of infection and longer outbreak-free time than the ancestral baseline (R₀=3, VE=0)\nAnalysis The article setting is a hotel-based, low-tolerance border quarantine system operating under a fixed protocol. The model treats both arriving travellers and quarantine workers as possible infection sources and tracks contacts inside the facility and potential breach to the community. Scenorio grid varying viral transmissibility (ancesteral —-&gt; higher transmissibility variant such as Delta) and vaccine efficacy against infection. Routine PCR testing for travellers/workers according to the protocol; infection detected —-&gt; isolation; defined PPE/contact-reduction rules reduce specific contact pathways. A breach event is counted when an infectious traveller or worker has uncontrolled contact with the general population. These breaches are converted into measures of community infection pressure and outbreak risk.\n\n\n\n\n\n\nFigure 1: Breach risk across transmissibility levels.\n\n\n\nAs shown in Figure 1, we could get to know that with the transmissibility increase from 3 to 5-10, the β has increased. Besides, but with the vaccine efficiency increase to 0.9, the β value dropped to 0.216. We could confirm that the initial quarantine system could function after the efficient vaccines.\n\n\n\n\n\n\nFigure 2: Outbreak-free time vs vaccine efficacy.\n\n\n\nAs shown in Figure 2, we could see that the time until outbreak 50% probability will increase when VE increase. So we could confirm that the under whatever transmissibility, the higher VE, the longer time until outbreak.\nConclusion\nReference"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -7,10 +14,80 @@
     "text": "I am now a master of Business Analytics in Monash University. I have learnt how to catch wild data, communicate with data, and data visualization….. I confirm that these skills could equip me for future careers.\nI have got my bachelor degree in Shan Dong University in China. My major was international finance and trade. On that days, I have learnt about the practices about international trades and some academic basis.\nI love coding and computer games. When i am energetic, I like to scratch the github for something interesting to equip my laptop. When i am tired, an exciting game will refresh me. I master python and R. I like dogs cause i think they are lovely and the symbol of loyalty."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog Template",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Blog",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!"
+    "text": "Breach Risk Under Vaccine Efficacy Scenarios\n\n\n\n\n\n\nCOVID\n\n\nHealth\n\n\nMethod\n\n\nStatistics\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nCaoyu_shao\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/welcome/blog_post.html#problem-description",
+    "href": "posts/welcome/blog_post.html#problem-description",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "Booming various kinds of SARS-CoV-2 viruses have put much pressure on the original isolation system because of their high transmissibility.\nQ1: How does VE change breach risk under a fixed quarantine system?\nQ2: How does higher transmissibility shift that risk?\nThe whole article is answering these two questions.\nThe article focused on the hotel-based system with a defined testing schedule and isolation rules, and quantified performance by breach events —instances where an infectious traveller or quarantine worker has uncontrolled contact with the public. The article reported the breaches per 1000 arrivals and 30-day probability of at least one outbreak, judging success when both remain below a predefined threshold."
+  },
+  {
+    "objectID": "posts/welcome/blog_post.html#analysis",
+    "href": "posts/welcome/blog_post.html#analysis",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "Analysis",
+    "text": "Analysis\nTo address Q1, we vary VE from low to high while holding the protocol fixed, then estimate breaches/1000 and 30-day break out probability.\n\n\n\n\n\n\nFigure 1: Breach risk across transmissibility levels.\n\n\n\nAs shown in Figure 1, breach risk decrease as VE rises; importantly, the decline is non-linear beyond moderate VE. This figure answers Q1 by showing that higher VE substantially reduces breach pressure, but does not eliminate it.\n\n\n\n\n\n\nFigure 2: Outbreak-free time vs vaccine efficacy.\n\n\n\nBuilding on this, for Q2 the article increased the transmissibilitiy while keeping VE and protocal constant. As the Figure 2 show, we could see that undefined"
+  },
+  {
+    "objectID": "posts/welcome/blog_post.html#conclusion",
+    "href": "posts/welcome/blog_post.html#conclusion",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "posts/welcome/blog_post.html#reference",
+    "href": "posts/welcome/blog_post.html#reference",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "Reference",
+    "text": "Reference\n1.Zachreson, C., Shearer, F. M., Price, D. J., Lydeamore, M. J., McVernon, J., McCaw, J., & Geard, N. (2022). COVID-19 in low-tolerance border quarantine systems: Impact of the Delta variant of SARS-CoV-2. Science Advances, 8(14), eabm3624. https://doi.org/10.1126/sciadv.abm3624"
+  },
+  {
+    "objectID": "posts/blog_posts/blog_post.html",
+    "href": "posts/blog_posts/blog_post.html",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "Figure 1: Breach risk across transmissibility levels.\n\n\n\n\n\nBooming various kinds of SARS-CoV-2 viruses have put much pressure on the original isolation system because of their high transmissibility.\nQ1: How does VE change breach risk under a fixed quarantine system?\nQ2: How does higher transmissibility shift that risk?\nThe whole article is answering these two questions.\nWe focus on a hotel-based system with a defined testing schedule and isolation rules, and we quantify performance by breach events—instances where an infectious traveller or quarantine worker has uncontrolled contact with the public.The article reported breaches per 1,000 arrivals and the 30-day probability of at least one outbreak, judging success when both remain below a predefined threshold.\n\n\n\nTo address Q1, we vary VE from low to high while holding the protocol fixed, then estimate breaches/1000 and 30-day break out probability.\n\n\n\n\n\n\nFigure 2: Breach risk across transmissibility levels.\n\n\n\nAs shown in Figure 2, breach risk decrease as VE rises; importantly, the decline is non-linear beyond moderate VE. This figure answers Q1 by showing that higher VE substantially reduces breach pressure, but does not eliminate it.\n\n\n\n\n\n\nFigure 3: Outbreak-free time vs vaccine efficacy.\n\n\n\nBuilding on this, for Q2 the article increased the transmissibilitiy while keeping VE and protocal constant. As the Figure 3 show, we could see that more transmissible variants erode the safety margin, so quarantine alone cannot compensate without strong vaccination and tight operations.\n\n\n\nGenerally speaking, Breach risk falls with VE and rises with the transmissibility of the virus. Vaccination can meaningfully counteracts variant pressure, yet stringent quarantine remains necessary for vaccinated travellers.\n\n\n\nFor reopening policies, combining high community vaccination with tight quarantine controls help keep the breach rates and 30-day outbreak probability under target.\nIf arrival prevalence spikes or a variant with substantially higher transmissibility emerges, today’s threshold can not meet the requirements. Next step, Track variant characteristics, re-calibate test schedules, and reestimate risk monthly.\n\n\n\n1.Zachreson, C., Shearer, F. M., Price, D. J., Lydeamore, M. J., McVernon, J., McCaw, J., & Geard, N. (2022). COVID-19 in low-tolerance border quarantine systems: Impact of the Delta variant of SARS-CoV-2. Science Advances, 8(14), eabm3624. https://doi.org/10.1126/sciadv.abm3624"
+  },
+  {
+    "objectID": "posts/blog_posts/blog_post.html#problem-description",
+    "href": "posts/blog_posts/blog_post.html#problem-description",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "Booming various kinds of SARS-CoV-2 viruses have put much pressure on the original isolation system because of their high transmissibility.\nQ1: How does VE change breach risk under a fixed quarantine system?\nQ2: How does higher transmissibility shift that risk?\nThe whole article is answering these two questions.\nWe focus on a hotel-based system with a defined testing schedule and isolation rules, and we quantify performance by breach events—instances where an infectious traveller or quarantine worker has uncontrolled contact with the public.The article reported breaches per 1,000 arrivals and the 30-day probability of at least one outbreak, judging success when both remain below a predefined threshold."
+  },
+  {
+    "objectID": "posts/blog_posts/blog_post.html#analysis",
+    "href": "posts/blog_posts/blog_post.html#analysis",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "To address Q1, we vary VE from low to high while holding the protocol fixed, then estimate breaches/1000 and 30-day break out probability.\n\n\n\n\n\n\nFigure 2: Breach risk across transmissibility levels.\n\n\n\nAs shown in Figure 2, breach risk decrease as VE rises; importantly, the decline is non-linear beyond moderate VE. This figure answers Q1 by showing that higher VE substantially reduces breach pressure, but does not eliminate it.\n\n\n\n\n\n\nFigure 3: Outbreak-free time vs vaccine efficacy.\n\n\n\nBuilding on this, for Q2 the article increased the transmissibilitiy while keeping VE and protocal constant. As the Figure 3 show, we could see that more transmissible variants erode the safety margin, so quarantine alone cannot compensate without strong vaccination and tight operations."
+  },
+  {
+    "objectID": "posts/blog_posts/blog_post.html#conclusions",
+    "href": "posts/blog_posts/blog_post.html#conclusions",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "Generally speaking, Breach risk falls with VE and rises with the transmissibility of the virus. Vaccination can meaningfully counteracts variant pressure, yet stringent quarantine remains necessary for vaccinated travellers."
+  },
+  {
+    "objectID": "posts/blog_posts/blog_post.html#reference",
+    "href": "posts/blog_posts/blog_post.html#reference",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "1.Zachreson, C., Shearer, F. M., Price, D. J., Lydeamore, M. J., McVernon, J., McCaw, J., & Geard, N. (2022). COVID-19 in low-tolerance border quarantine systems: Impact of the Delta variant of SARS-CoV-2. Science Advances, 8(14), eabm3624. https://doi.org/10.1126/sciadv.abm3624"
+  },
+  {
+    "objectID": "posts/blog_posts/blog_post.html#policy-inspirations",
+    "href": "posts/blog_posts/blog_post.html#policy-inspirations",
+    "title": "Breach Risk Under Vaccine Efficacy Scenarios",
+    "section": "",
+    "text": "For reopening policies, combining high community vaccination with tight quarantine controls help keep the breach rates and 30-day outbreak probability under target.\nIf arrival prevalence spikes or a variant with substantially higher transmissibility emerges, today’s threshold can not meet the requirements. Next step, Track variant characteristics, re-calibate test schedules, and reestimate risk monthly."
   }
 ]

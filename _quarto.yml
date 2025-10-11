@@ -1,22 +1,19 @@
 project:
   type: website
 
+
 website:
-  title: "Blog_Shao_Caoyu"
+  title: "Samuel Shao · Analytics Notes"
   navbar:
+    background: yellow
     right:
-      - about.qmd
-      - icon: github
-        href: https://github.com/etc5523-2022
+       - about.qmd
+       - icon: github
+         href: https://github.com/shaocaoyu-01
+         aria-label: GitHub
+
 format:
   html:
-    toc: true
-    toc-depth: 2
-    theme: cosmo
     css: styles.css
-
-
-
-theme:
-  light: flatly
-  dark: darkly
+    theme:
+      cosmo

@@ -1,8 +1,37 @@
-# options specified here will apply to all posts in this folder
+project:
+  type: website
+  output-dir: _site
 
-# freeze computational output
-# (see https://quarto.org/docs/projects/code-execution.html#freeze)
-freeze: true
+website:
+  title: "Caoyu's Blog"
+  favicon: images/favicon.png
+  navbar:
+    pinned: false
+    logo: images/logo.png  # 可选：左侧 Logo
+    background: yellow
+    foreground: "#111"     # 字体颜色
+    left:
+      - text: front page
+        href: index.qmd
+      - text: blog
+        href: posts/
+      - text: species
+        menu:
+          - text: COVID
+            href: posts/?category=COVID
+          - text: Methods
+            href: posts/?category=Methods
+    right:
+      - icon: github
+        href: https://github.com/shaocaoyu-01
+      - icon: rss
+        href: index.xml
+  page-footer:
+    left: "© 2025 Caoyu_Shao"
+    right: "Built with Quarto"
 
-# Enable banner style title blocks
-title-block-banner: true
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
