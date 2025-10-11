@@ -1,9 +1,11 @@
 project:
   type: website
+  output-dir: docs
 
 
 website:
   title: "Samuel Shao · Analytics Notes"
+  site-url: https://github.com/ETC5523-2025/assignment-3-creating-a-blog-shaocaoyu-01
   navbar:
     background: yellow
     right:

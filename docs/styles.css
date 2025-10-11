@@ -1,0 +1,18 @@
+
+$body-bg:    #fbfbfd;
+$body-color: #1a1a1a;
+$link-color: #0b5ed7;
+$headings-color: #0f172a;
+
+
+$navbar-bg: #ffffff;
+$navbar-fg: #111111;
+$navbar-brand-color: #111111;
+$navbar-hover-color: #0b5ed7;
+
+
+$code-block-bg: #f5f7fa;
+
+
+.navbar { box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+h1, h2, h3 { letter-spacing: 0.2px; }
