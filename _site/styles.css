@@ -1,18 +1,25 @@
-
-$body-bg:    #fbfbfd;
-$body-color: #1a1a1a;
-$link-color: #0b5ed7;
-$headings-color: #0f172a;
+:root { --brand-red: #A61B29; }
 
 
-$navbar-bg: #ffffff;
-$navbar-fg: #111111;
-$navbar-brand-color: #111111;
-$navbar-hover-color: #0b5ed7;
+
+.navbar,
+.navbar .dropdown-menu { background-color: var(--brand-red) !important; }
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .dropdown-item { color: #fff !important; }
+.navbar .nav-link:hover,
+.navbar .dropdown-item:hover { color: #FFE082 !important; }
 
 
-$code-block-bg: #f5f7fa;
+a { color: #FFE082; }
+a:hover { color: #FFF3C4; text-decoration: underline; }
 
 
-.navbar { box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-h1, h2, h3 { letter-spacing: 0.2px; }
+pre code,
+.quarto-code-cell .sourceCode { background: rgba(255,255,255,.08) !important; color: #fff; }
+code { background: rgba(255,255,255,.12); color: #fff; }
+.table { color: #fff; }
+.table-striped tbody tr:nth-of-type(odd){ background-color: rgba(255,255,255,.06); }
+
+
+.quarto-title-banner { background-color: #8E1925; color: #fff; }

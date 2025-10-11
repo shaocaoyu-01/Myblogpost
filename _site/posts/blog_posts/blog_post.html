@@ -9,7 +9,7 @@
 <meta name="author" content="Caoyu_shao">
 <meta name="dcterms.date" content="2025-10-08">
 
-<title>Breach Risk Under Vaccine Efficacy Scenarios – Samuel Shao · Analytics Notes</title>
+<title>Breach Risk Under Vaccine Efficacy Scenarios – Caoyu · Analytics Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Samuel Shao · Analytics Notes</span>
+    <span class="navbar-title">Caoyu · Analytics Notes</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Caoyu’s Profile</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/shaocaoyu-01"> <i class="bi bi-github" role="img" aria-label="GitHub">
@@ -152,8 +152,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="breach-risk-under-vaccine-efficacy-scenarios" class="level1">
-<h1>Breach Risk Under Vaccine Efficacy Scenarios</h1>
 <div id="fig-variant-c" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-variant-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -166,11 +164,7 @@ Figure&nbsp;1: Breach risk across transmissibility levels.
 </div>
 <section id="problem-description" class="level2">
 <h2 class="anchored" data-anchor-id="problem-description">Problem description</h2>
-<p>Booming various kinds of SARS-CoV-2 viruses have put much pressure on the original isolation system because of their high transmissibility.</p>
-<p><strong>Q1:</strong> How does VE change breach risk under a fixed quarantine system?</p>
-<p><strong>Q2:</strong> How does higher transmissibility shift that risk?</p>
-<p>The whole article is answering these two questions.</p>
-<p>We focus on a hotel-based system with a defined testing schedule and isolation rules, and we quantify performance by breach events—instances where an infectious traveller or quarantine worker has uncontrolled contact with the public.The article reported breaches per 1,000 arrivals and the 30-day probability of at least one outbreak, judging success when both remain below a predefined threshold.</p>
+<p>The emergence of more transmissible SARS-CoV-2 variants has put increasing pressure on legacy quarantine systems. Against this backdrop, we ask two questions: (RQ1) how does vaccine efficacy (VE) change breach risk under a fixed quarantine protocol, and (RQ2) how does higher transmissibility (R₀) shift that risk. To answer these questions, we analyze a hotel-based system with a defined testing schedule and isolation rules. We therefore quantify performance by breach events—instances where an infectious traveller or quarantine worker has uncontrolled contact with the public. Operationally, we report breaches per 1,000 arrivals and the 30-day probability of at least one outbreak, and we judge success when both remain below a predefined threshold. These definitions link directly back to RQ1 and RQ2, allowing us to compare scenarios consistently and attribute changes in risk to VE and transmissibility.</p>
 </section>
 <section id="analysis" class="level2">
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
@@ -186,6 +180,7 @@ Figure&nbsp;2: Breach risk across transmissibility levels.
 </figure>
 </div>
 <p>As shown in <a href="#fig-variant-a" class="quarto-xref">Figure&nbsp;2</a>, breach risk decrease as VE rises; importantly, the decline is non-linear beyond moderate VE. This figure answers Q1 by showing that higher VE substantially reduces breach pressure, but does not eliminate it.</p>
+<p>Building on this, for Q2 the article increased the transmissibilitiy while keeping VE and protocal constant.</p>
 <div id="fig-variant-b" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-variant-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -196,23 +191,21 @@ Figure&nbsp;3: Outbreak-free time vs vaccine efficacy.
 </figcaption>
 </figure>
 </div>
-<p>Building on this, for Q2 the article increased the transmissibilitiy while keeping VE and protocal constant. As the <a href="#fig-variant-b" class="quarto-xref">Figure&nbsp;3</a> show, we could see that more transmissible variants erode the safety margin, so quarantine alone cannot compensate without strong vaccination and tight operations.</p>
+<p>As the <a href="#fig-variant-b" class="quarto-xref">Figure&nbsp;3</a> show, we could see that more transmissible variants erode the safety margin, so quarantine alone cannot compensate without strong vaccination and tight operations.</p>
 </section>
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>Generally speaking, Breach risk falls with VE and rises with the transmissibility of the virus. Vaccination can meaningfully counteracts variant pressure, yet stringent quarantine remains necessary for vaccinated travellers.</p>
+<p>Taken together, breach risk falls with VE and rises with R₀. Vaccination meaningfully counteracts variant pressure, yet stringent quarantine remains necessary—even for vaccinated travellers—when facing highly transmissible variants.</p>
 </section>
 <section id="policy-inspirations" class="level2">
 <h2 class="anchored" data-anchor-id="policy-inspirations">Policy inspirations</h2>
-<p>For reopening policies, combining high community vaccination with tight quarantine controls help keep the breach rates and 30-day outbreak probability under target.</p>
-<p>If arrival prevalence spikes or a variant with substantially higher transmissibility emerges, today’s threshold can not meet the requirements. Next step, Track variant characteristics, re-calibate test schedules, and reestimate risk monthly.</p>
+<p>In practical terms, pairing high community vaccination with tight quarantine controls (testing cadence, PPE, isolation timing) helps keep breach rates and 30-day outbreak probability under target. However, if arrival prevalence spikes or a substantially more transmissible variant emerges, today’s thresholds may no longer be met. Next, track variant characteristics, re-calibrate test schedules, and re-estimate risk on a monthly cycle to maintain an adequate safety margin.</p>
 </section>
 <section id="reference" class="level2">
 <h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <p>1.Zachreson, C., Shearer, F. M., Price, D. J., Lydeamore, M. J., McVernon, J., McCaw, J., &amp; Geard, N. (2022). <em>COVID-19 in low-tolerance border quarantine systems: Impact of the Delta variant of SARS-CoV-2</em>. <strong>Science Advances, 8</strong>(14), eabm3624. <a href="https://doi.org/10.1126/sciadv.abm3624" class="uri">https://doi.org/10.1126/sciadv.abm3624</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -306,7 +299,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/github\.com\/ETC5523-2025\/assignment-3-creating-a-blog-shaocaoyu-01");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

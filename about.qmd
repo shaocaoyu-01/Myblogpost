@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Caoyu's Profile"
 image:  profile_picture.jpg
 about: 
    template: jolla
@@ -12,8 +12,8 @@ about:
        href: https://www.linkedin.com/in/samuel-shao0058
 ---
 
-I am now a master of Business Analytics in Monash University. I have learnt how to catch wild data, communicate with data, and data visualization..... I confirm that these skills could equip me for future careers.
+I’m a Master of Business Analytics student at Monash University. I’ve learned to wrangle messy data, communicate insights, and build clear visualizations—skills that equip me well for data-driven roles.
 
-I have got my bachelor degree in Shan Dong University in China. My major was international finance and trade. On that days, I have learnt about the practices about international trades and some academic basis.
+I earned my bachelor’s degree in International Finance and Trade from Shandong University (China), where I studied trade practices and built a solid foundation in economics and quantitative methods.
 
-I love coding and computer games. When i am energetic, I like to scratch the github for something interesting to equip my laptop. When i am tired, an exciting game will refresh me. I master python and R. I like dogs cause i think they are lovely and the symbol of loyalty. 
+I enjoy coding and computer games. When I’m energized, I like exploring GitHub for interesting tools to tinker with; when I’m tired, an exciting game helps me reset. I’m proficient in Python and R. I also love dogs—their loyalty and warmth always make my day.
