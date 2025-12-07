@@ -11,6 +11,8 @@ format:
         embed-resources: true
 ---
 
+![Orcas distribution exploration](../../images/orcas.jpg){#fig-variant-c}
+
 ```{r}
 #| echo: false
 # Set up chunk for all slides
@@ -63,7 +65,7 @@ theme_set(theme_bw(base_size = 14) +
 ```
 
 
-## 🛠️ Exercises
+
 ```{r echo=FALSE}
 #remotes::install_github("jadeynryan/orcas")
 # delete the '#' if this package haven't been installed, and it will be installed 
