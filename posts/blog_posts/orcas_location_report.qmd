@@ -1,0 +1,698 @@
+---
+title: "ETC5521 Diving Deeper into Data Exploration: Assignment 1"
+author: "Caoyu Shao"
+date: "Aug 18, 2025"
+quarto-required: ">=1.3.0"
+categories: [Orcas, Location,Map]
+format:
+    html: 
+        output-file: assign01-submission.html
+        css: "assignment.css"
+        embed-resources: true
+---
+
+```{r}
+#| echo: false
+# Set up chunk for all slides
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  code.line.numbers = FALSE,
+  fig.retina = 4,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  dev.args = list(pointsize = 11)
+)
+```
+
+```{r}
+#| echo: false
+# Load libraries
+library(tidyverse)
+library(conflicted)
+
+conflicts_prefer(dplyr::filter)
+conflicts_prefer(dplyr::select)
+conflicts_prefer(dplyr::slice)
+
+# Plot options and themes
+options(
+  digits = 2,
+  width = 60,
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis",
+  ggplot2.discrete.colour = c("#D55E00", "#0072B2", "#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#F0E442"),
+  ggplot2.discrete.fill = c("#D55E00", "#0072B2", "#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#F0E442")
+)
+
+theme_set(theme_bw(base_size = 14) +
+   theme(
+     aspect.ratio = 1,
+     plot.background = element_rect(fill = 'transparent', colour = NA),
+     plot.title.position = "plot",
+     plot.title = element_text(size = 24),
+     panel.background = element_rect(fill = 'transparent', colour = NA),
+     legend.background = element_rect(fill = 'transparent', colour = NA),
+     legend.key = element_rect(fill = 'transparent', colour = NA)
+   )
+)
+```
+
+
+## 🛠️ Exercises
+```{r echo=FALSE}
+#remotes::install_github("jadeynryan/orcas")
+# delete the '#' if this package haven't been installed, and it will be installed 
+
+library(orcas)
+
+data(package = "orcas") 
+# lists available datasets
+
+data("cwr_tidy",package = "orcas")
+data("cwr_untidy",package = "orcas")
+# load the data set
+```
+
+
+## Question 1 
+
+```{r echo=FALSE}
+cwr_tidy$date <- as.Date(cwr_tidy$date)
+# this step is to make sure that the date format is qualified
+
+start_date <- min(cwr_tidy$date, na.rm = TRUE)
+end_date <- max(cwr_tidy$date, na.rm = TRUE)
+
+
+span_years<- time_length(interval(start_date,end_date),"years")
+span_days <- as.integer(end_date - start_date)+1
+
+```
+The dataset spans 2017-01-05 to 2024-10-06, totaling 2,832 days (≈ 7.75 years).
+
+
+
+
+```{r echo=FALSE}
+#| fig-width: 9
+#| fig-height: 4.5
+#| out-width: "100%"  
+#| fig-align: "center"
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+
+cwr_tidy$date <- as.Date(cwr_tidy$date)
+#this step is to make sure that the data format is qualified
+
+
+monthly_counts <- cwr_tidy |>
+  mutate(month = floor_date(date,"month"))|>
+  group_by(month)|>
+  summarize(encounters=n()) |>
+  filter(!is.na(month))
+#This step is to calcaulate the number of encounters in a month
+
+ggplot(monthly_counts,aes(x= month,y = encounters))+
+  geom_line() +
+  labs(
+    title = "Figure 1. Monthly orcas encounters",
+    x = "Time" , 
+    y = "Encounter_times")+
+  scale_x_date(date_breaks = "3 months", date_labels = "%Y-%m") + 
+  scale_y_continuous(breaks = scales::breaks_pretty())+
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+monthly_counts <- monthly_counts |>
+  mutate(month =as.Date(month),
+         ym = floor_date(month, "month"),
+         year = year(ym),
+         m_num = month(ym)) |>
+  select(encounters,ym,year,m_num)
+
+
+
+monthly_counts <- monthly_counts |>
+  group_by(year)|>
+  complete(m_num =1:12, fill = list(count =0))|>
+  ungroup()|>
+  mutate(ym = make_date(year,m_num,1),
+         m_lab = factor(month(ym,label = TRUE,abbr = TRUE),ordered = TRUE),
+         days_in_m = days_in_month(ym)
+  )
+
+
+
+ggplot(monthly_counts, aes(x = m_lab, y = encounters)) +
+  geom_boxplot() +
+  labs(title = "Figure 2. Seasonality by month (counts across years)", 
+       x = NULL, 
+       y = "Encounters")+
+   theme_minimal(base_size = 12)
+
+
+```
+Figure 1. Monthly time-series of orca encounters (x-axis: YYYY-MM; y-axis: encounters per month), showing month-to-month variation in observations.
+
+Figure 2. Boxplots of monthly encounter counts across years (x-axis: month abbreviation; y-axis: encounters). Each box summarizes the distribution of counts for that month over all years in the dataset.
+
+Result. Both figures indicate a pronounced seasonal peak in September. Across years, the median number of encounters in September is ≈18, whereas the median for other months is generally <10, indicating substantially higher activity in September.
+
+
+```{r echo=FALSE}
+#| fig-width: 9
+#| fig-height: 4.5
+#| out-width: "100%"   
+#| fig-align: "center"
+Sep_share_on_year <-cwr_tidy|>
+#Sep is the abbreviation of September. 
+
+
+  mutate(date =as.Date(date),
+         year =year(date),
+         month = month(date))|>
+  group_by(year) |>
+  summarize(
+    total =n(),
+    sep =sum(month %in% 9),
+    .groups = "drop") |>
+    mutate(proportion = sep/total)|>
+  filter(!is.na(year))
+
+
+library(scales)
+ggplot(Sep_share_on_year,aes(x=year,y=proportion))+
+         geom_line()+
+         geom_point()+
+         geom_text(aes(label = scales::percent(proportion, accuracy = 1)),
+            vjust = -0.6, size = 3, check_overlap = TRUE)+
+         scale_y_continuous(labels = percent_format(accuracy =1))+
+         labs(title = "Figure 3.Proportion of encounters in September by year",
+              x= "Year",
+              y= "Sep proportion of annual") +
+         theme_minimal(base_size = 12)
+```
+Figure 3. Line chart of the share of annual encounters occurring in September, by year (x-axis: year; y-axis: September share of the yearly total).
+
+Interpretation. The September share varies across 2017–2024 but never falls below ~15%, which is well above September’s calendar share of the year (~8.3%). Taken together with Figures 1–2, this indicates a clear seasonal pattern with a consistent peak in September.
+
+
+
+```{r echo=FALSE}
+#| fig-width: 9
+#| fig-height: 4.5
+#| out-width: "100%"  
+#| fig-align: "center"
+duration_time_df <- cwr_tidy |>
+  select(duration,vessel)|>filter(!is.na(duration))
+
+library(stringr)
+
+
+
+
+
+
+if (is.character(duration_time_df$duration) && length(duration_time_df$duration) == 1L) 
+  df$time <- str_match_all(df$time, "-?\\d+\\s*s")[[1]][, 1]
+
+
+duration_time_df$duration <- duration_time_df$duration |>
+  as.character() |>
+  str_remove_all("\\s*-?\\s*\\([^)]*\\)") |>
+  str_trim()
+
+
+duration_time_df$seconds <- duration_time_df$duration |>
+  str_remove("\\s*s$") |>
+  as.integer()
+
+
+duration_time_df$seconds <- abs(duration_time_df$seconds)
+
+
+
+
+
+library(dplyr)
+library(ggplot2)
+
+duration_time_df <- duration_time_df |>
+  mutate(bin = cut(seconds, 
+              breaks = seq(0, max(seconds, na.rm = TRUE) + 1000, by = 1000), 
+              right = FALSE))
+  
+  
+  ggplot(duration_time_df, aes(x = seconds)) +
+  geom_histogram(binwidth = 1000, fill = "skyblue", color = "black") +
+  labs(
+    title = "Figure 4.Encounter duration distribution by 1000s bins",
+    x = "Duration",
+    y = "Encounters"
+  )+theme_minimal(base_size = 12)
+```
+
+Figure 4. Histogram of encounter durations (x-axis: duration in 1,000-second bins; y-axis: number of encounters).
+
+Interpretation. The distribution is right-skewed with a long tail of very long encounters. Most encounters fall between 1,000 and 8,000 seconds, with the modal bin at 3,000–4,000 seconds (86 encounters).
+
+
+## Question 2
+
+
+```{r echo=FALSE}
+#| fig-width: 9
+#| fig-height: 4.5
+#| out-width: "100%"   
+#| fig-align: "center"
+#| results: "hide"   
+#| message: false    
+#| warning: false  
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(sf)
+library(dbscan)    
+library(ggspatial) 
+library(viridis)   
+library(ggforce)   
+library(leaflet)    
+
+
+
+
+
+
+enc <- cwr_tidy %>% 
+  rename(lat = begin_latitude, lon = begin_longitude)%>%
+  filter(!is.na(lat), !is.na(lon))
+#data preparation
+
+stopifnot(all(c("lat","lon") %in% names(enc)))
+
+
+
+#turn into sf
+enc_sf <- st_as_sf(enc, coords = c("lon","lat"), crs = 4326)
+
+
+    
+
+#the distribution in the map
+p_points <-
+  ggplot(enc_sf) +
+  geom_sf() +
+  labs(title = "Figure 5.Orca Encounters: Overall Spatial Distribution") +
+  theme_minimal(base_size = 12)
+
+print(p_points)
+
+```
+Figure 5. Map of orca encounter locations.
+
+Interpretation. Encounters are not uniformly distributed; instead, they show clear spatial clustering with noticeable gaps between clusters. The map also highlights an outlying point north of 50.0° N, which may reflect either a genuine distant sighting or a data-entry/positioning error. Overall, Figure 5 provides a concise overview of the spatial pattern of encounters.
+
+
+```{r echo=FALSE}
+#| fig-width: 9
+#| fig-height: 4.5
+#| out-width: "100%"   
+#| fig-align: "center"
+#| results: "hide"   
+#| message: false    
+#| warning: false  
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(sf)
+library(dbscan)    
+library(ggspatial) 
+library(viridis)   
+library(ggforce)   
+library(leaflet) 
+#set the parameters
+HEX_SIZE_M <- 5000  
+EPS_M      <- 2000  
+MINPTS     <- 5 
+
+
+
+#heat map
+enc_m  <- st_transform(enc_sf, 3857)                
+bbox   <- st_bbox(enc_m)
+hex    <- st_make_grid(st_as_sfc(bbox), cellsize = HEX_SIZE_M, square = FALSE)
+hex_sf <- st_sf(geometry = hex)
+
+
+counts <- st_join(hex_sf, enc_m, join = st_contains) %>%
+  count(geometry, name = "n")
+
+p_hex <-
+  ggplot(counts) +
+  geom_sf(aes(fill = n), color = NA) +
+  scale_fill_viridis_c(option = "C", direction = -1) +
+  labs(
+    title = sprintf("Figure 6.Encounter Hotspots (Hex ~%d km)", HEX_SIZE_M/1000),
+    fill  = "Count"
+  ) +
+  theme_minimal(base_size = 12)
+
+print(p_hex)
+```
+Figure 6. Hexbin heat map of encounter hotspots (hex size ≈ 5 km). Darker hexagons indicate higher encounter counts.
+
+Interpretation. Consistent with Figure 5, encounters are concentrated within 48.0°–49.0° N and 123.5°–123.0° W, indicating a clear spatial core rather than a uniform distribution.
+
+
+```{r echo=FALSE}
+#| fig-width: 9
+#| fig-height: 4.5
+#| out-width: "100%"   
+#| fig-align: "center"
+#| message: false    
+#| warning: false  
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(sf)
+library(dbscan)    
+library(ggspatial) 
+library(viridis)   
+library(ggforce)   
+library(leaflet) 
+
+
+
+has_leaflet   <- requireNamespace("leaflet",   quietly = TRUE)
+has_ggspatial <- requireNamespace("ggspatial", quietly = TRUE)
+
+#reproducible map
+if (has_leaflet) {
+  leaflet::leaflet(enc) |>
+    leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |>
+    leaflet::addCircleMarkers(lng = ~lon, lat = ~lat, radius = 3, opacity = 0.8) |>
+    leaflet::addScaleBar(position = "bottomleft")
+}
+
+
+```
+Interpretation. The reproducible map clarifies the coastline geometry behind Figure 5: the arc-shaped pattern of encounters follows the bay shoreline, with the majority of sightings clustered within the bay rather than offshore. This indicates that the observed spatial pattern is largely coastline-constrained.
+
+
+
+## Question 3
+
+```{r echo=FALSE}
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(ggplot2)
+library(scales)
+
+df <- cwr_tidy
+stopifnot(!inherits(df, "function"))
+df <- as.data.frame(df)
+df <- df %>% mutate(date = as.Date(date)) %>% filter(!is.na(date))
+
+
+nm <- tolower(names(df))
+pick <- function(patterns) {
+  i <- which(Reduce(`|`, lapply(patterns, function(p) grepl(p, nm))))
+  if (length(i)) names(df)[i[1]] else NA_character_
+}
+
+col_vessel   <- pick(c("^vessel$", "boat", "ship", "platform_name"))
+col_observer <- pick(c("observer", "observer_name", "reported_by", "naturalist", "skipper", "captain"))
+col_plat     <- pick(c("^platform$", "platform_type", "platform_category"))
+col_dur      <- pick(c("^duration$", "duration_min", "minutes", "mins", "seconds", "secs"))
+col_start    <- pick(c("^start_time$", "start$", "time_start", "start_datetime"))
+col_end      <- pick(c("^end_time$", "end$", "time_end", "end_datetime"))
+
+
+
+get_duration_hours <- function(df) {
+  if (!is.na(col_dur)) {
+    x <- df[[col_dur]]
+    x <- suppressWarnings(as.numeric(x))
+    if (all(is.na(x))) {
+      x <- as.numeric(gsub("[^0-9\\.-]", "", df[[col_dur]]))
+    }
+    if (median(x, na.rm = TRUE) > 300) x/3600 else x/60
+  } else if (!is.na(col_start) && !is.na(col_end)) {
+    t1 <- suppressWarnings(ymd_hms(df[[col_start]]))
+    t2 <- suppressWarnings(ymd_hms(df[[col_end]]))
+    as.numeric(difftime(t2, t1, units = "hours"))
+  } else {
+    rep(NA_real_, nrow(df))
+  }
+}
+
+df <- df %>% mutate(duration_h = get_duration_hours(df))
+
+df <- df %>% mutate(duration_h = ifelse(duration_h < 0 | duration_h > 12, NA, duration_h))
+
+
+
+```
+
+
+
+```{r echo=FALSE}
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+
+df <- df %>% mutate(row_id = row_number())
+
+
+obs_long <- df %>%
+  mutate(observers = as.character(observers)) %>%
+
+  mutate(observers = str_remove_all(observers, "\\s*\\([^)]*\\)")) %>%
+
+  separate_rows(observers, sep = "\\s*(?:,|;|/|\\||&|\\+|、|，|\\band\\b)\\s*",
+                convert = FALSE) %>%
+
+  mutate(observers = str_squish(observers),
+         observers = str_remove_all(observers, "^[-–•]+|[-–•]+$"),
+         observers = str_to_title(observers)) %>%
+
+  filter(!is.na(observers), observers != "")
+
+
+obs_long <- obs_long %>% distinct(row_id, observers)
+
+
+top_observers <- obs_long %>%
+  count(observers, name = "n", sort = TRUE)
+
+
+
+
+
+top_observers %>%
+  slice_head(n = 20) %>%
+  ggplot(aes(x = reorder(observers, n), y = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Figure 7.Most Frequent Observers", x = NULL, y = "Count") +
+  theme_minimal(base_size = 12)
+
+  
+```
+Figure 7. Top 20 observers by number of encounters. Dave Ellifrit records the most encounters. Mark Malleson ranks second with ~300 encounters—roughly twice the third-ranked observer. Together, Dave Ellifrit and Mark Malleson stand out as the most active observers in the dataset.
+
+```{r echo=FALSE}
+if (!is.na(col_vessel)) {
+  top_vessels <- df %>%
+    filter(!is.na(.data[[col_vessel]])) %>%
+    group_by(.data[[col_vessel]]) %>%
+    summarise(n = dplyr::n(),
+              sum_hours = sum(duration_h, na.rm = TRUE),
+              .groups = "drop") %>%
+    arrange(desc(n))
+  head(top_vessels, 10)
+
+#visualize
+
+  
+  
+  
+  
+  top10_v <- top_vessels %>% slice_max(n, n = 10)
+  ggplot(top10_v, aes(x = reorder(.data[[col_vessel]], n), y = n)) +
+    geom_col() +
+    coord_flip() +
+    labs(title = "Figure 8.Top 10 active vessels by number of encounters",
+       x="vessel",y = "Encounters")+
+    theme_minimal(base_size = 12)
+}
+
+
+
+```
+Figure 8. Top 10 vessels by number of encounters. Orcinus records the most encounters overall, while Mike1 ranks second with ~300 encounters. Both Orcinus and Mike1 clearly stand out as the most active vessels in the dataset.
+
+
+## Question 4
+
+```{r echo=FALSE}
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(tidytext)
+library(ggplot2)
+library(lubridate)
+
+
+df2 <- cwr_tidy 
+stopifnot("encounter_summary" %in% names(df2))
+
+
+domain_stop <- c("orca","orcas","killer","whale","whales","srkw",
+                 "encounter","encounters","pod","pods",
+                 "vessel","boat","boats","km","m","na",
+                 "min","mins","sec","secs")
+stop_tbl <- bind_rows(
+  tidytext::stop_words %>% select(word),     
+  tibble(word = domain_stop)
+) %>% distinct()
+
+
+tokens <- df2 %>%
+  transmute(enc_id = row_number(),
+            text   = encounter_summary) %>%
+  filter(!is.na(text), str_squish(text) != "") %>%
+  mutate(text = str_to_lower(text)) %>%
+  unnest_tokens(word, text, token = "words", strip_punct = TRUE) %>%
+  filter(!str_detect(word, "^[0-9]+$")) %>%     
+  anti_join(stop_tbl, by = "word") %>%           
+  filter(str_detect(word, "[a-z]"))              
+
+top_words <- tokens %>% count(word, sort = TRUE)
+
+
+ggplot(top_words %>% slice_max(n, n = 20),
+       aes(x = reorder(word, n), y = n)) +
+  geom_col() +
+  geom_text(aes(label = n), 
+            hjust = -0.2,        
+            size = 2.5) + 
+  coord_flip() +
+  labs(title = "Figure 9.Top words in encounter descriptions",
+       x = NULL, y = "Count") +
+  theme_minimal(base_size = 12)
+```
+
+
+From Figure 9, what we can get is that in the encounter summaries, the most frequent word is south, the second frequent word is island. "south" appears 1645 times and "island" appears 1633 times.
+
+
+
+```{r echo=FALSE}
+bigrams <- df2 %>%
+  transmute(text = encounter_summary) %>%
+  filter(!is.na(text), str_squish(text) != "") %>%
+  mutate(text = str_to_lower(text)) %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+  separate(bigram, c("w1","w2"), sep = " ", remove = FALSE) %>%
+  filter(!w1 %in% stop_tbl$word, !w2 %in% stop_tbl$word,
+         str_detect(w1, "[a-z]"), str_detect(w2, "[a-z]")) %>%
+  count(bigram, sort = TRUE)
+
+print(bigrams %>% slice_head(n = 20))
+
+
+```
+
+From the table, the most frequent bigram in the encounter summaries is “San Juan” (389 occurrences), followed by “Snug Harbor” and “Haro Strait.” These terms refer to place names in the study area: “San Juan” denotes the San Juan Islands (an archipelago), Snug Harbor is a locality on San Juan Island, and Haro Strait is the strait adjacent to San Juan Island.
+
+
+
+
+
+## Resources
+
+The materials used for this report are:
+
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,
+  Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL,
+  Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu
+  V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019).
+  "Welcome to the tidyverse." _Journal of Open Source Software_,
+  *4*(43), 1686. [doi:10.21105/joss.01686](https://doi.org/10.21105/joss.01686).
+  
+Wickham H (2023). _conflicted: An Alternative Conflict Resolution Strategy_. 
+R package version 1.2.0, <https://CRAN.R-project.org/package=conflicted>.
+
+Ryan J (2025). _orcas: Scrape and Visualize Orca Sighting Data_. R package 
+version 0.0.0.9000, commit 08b3808ee4f5c9f1a25cbedea9e9d8316322ed1c,
+  <https://github.com/jadeynryan/orcas>.
+  
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag 
+New York, 2016.
+
+Wickham H, François R, Henry L, Müller K, Vaughan D (2023). 
+_dplyr: A Grammar of Data Manipulation_. R package version 1.1.4,
+  <https://CRAN.R-project.org/package=dplyr>.
+  
+Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with 
+lubridate. Journal of Statistical Software, 40(3), 1-25. URL
+  https://www.jstatsoft.org/v40/i03/.
+  
+  Wickham H, Pedersen T, Seidel D (2023).
+  _scales: Scale Functions for Visualization_. 
+  R package version 1.3.0, <https://CRAN.R-project.org/package=scales>.
+  
+  Wickham H (2023). 
+  _stringr: Simple, Consistent Wrappers for Common String Operations_. 
+  R package version 1.5.1, <https://CRAN.R-project.org/package=stringr>.
+  
+  Pebesma, E., & Bivand, R. (2023). Spatial Data Science: With Applications 
+  in R. Chapman and Hall/CRC. https://doi.org/10.1201/9780429459016
+
+  Pebesma, E., 2018. Simple Features for R: Standardized Support for 
+  Spatial Vector Data. The R Journal 10 (1), 439-446, 
+  https://doi.org/10.32614/RJ-2018-009
+  
+  Hahsler M, Piekenbrock M (2025). 
+  _dbscan: Density-Based Spatial Clustering of Applications with Noise (DBSCAN) and Related Algorithms_.
+  R package version 1.2.2,
+<https://CRAN.R-project.org/package=dbscan>.
+  
+  Dunnington D (2023). _ggspatial: Spatial Data Framework for ggplot2_. 
+  R package version 1.1.9, <https://CRAN.R-project.org/package=ggspatial>.
+  
+   Simon Garnier, Noam Ross, Robert Rudis, Antônio P. Camargo, Marco Sciaini, 
+   and Cédric Scherer (2024). viridis(Lite) - Colorblind-Friendly Color Maps for R.
+  viridis package version 0.6.5.
+  
+  Pedersen T (2025). _ggforce: Accelerating 'ggplot2'_. R package version 0.5.0,
+  <https://CRAN.R-project.org/package=ggforce>.
+  
+   Cheng J, Schloerke B, Karambelkar B, Xie Y (2024). 
+   _leaflet: Create Interactive Web Maps with the JavaScript 'Leaflet' Library_. 
+   R package version 2.2.2,
+  <https://CRAN.R-project.org/package=leaflet>.
+  
+  Wickham H, Vaughan D, Girlich M (2024). _tidyr: Tidy Messy Data_.
+  R package version 1.3.1, <https://CRAN.R-project.org/package=tidyr>.
+  
+  Silge J, Robinson D (2016). “tidytext: Text Mining and Analysis Using Tidy 
+  Data Principles in R.” _JOSS_, *1*(3). doi:10.21105/joss.00037
+  <https://doi.org/10.21105/joss.00037>, <http://dx.doi.org/10.21105/joss.00037>.
+  
+
+The links to my use of ChatGPT for help on this assignment are:
+
+- [https://chatgpt.com/share/68a2fc3f-95a4-8000-bc1f-45d65b2839e4](https://chatgpt.com/share/68a2fc3f-95a4-8000-bc1f-45d65b2839e4) helped to construct the regex to process the duration variable. Besides, it helps me to make a reproducible map given the latitude and longitude.
+

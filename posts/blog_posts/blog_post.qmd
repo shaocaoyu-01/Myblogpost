@@ -1,7 +1,7 @@
 ---
 title: "Breach Risk Under Vaccine Efficacy Scenarios"
 author: "Caoyu_shao"
-date: "2025-10-08"
+date: "Oct 08,2025"
 categories: [COVID,Health,Method,Statistics]
 resources: ["../../images/**"]
 execute:
