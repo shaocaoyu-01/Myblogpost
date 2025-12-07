@@ -4,6 +4,7 @@ author: "Caoyu Shao"
 date: "Aug 18, 2025"
 quarto-required: ">=1.3.0"
 categories: [Orcas, Location,Map]
+image: "../../images/orcas.jpg"
 format:
     html: 
         output-file: assign01-submission.html
@@ -123,7 +124,7 @@ monthly_counts <- cwr_tidy |>
 ggplot(monthly_counts,aes(x= month,y = encounters))+
   geom_line() +
   labs(
-    title = "Figure 1. Monthly orcas encounters",
+    title = "Figure 2. Monthly orcas encounters",
     x = "Time" , 
     y = "Encounter_times")+
   scale_x_date(date_breaks = "3 months", date_labels = "%Y-%m") + 
@@ -155,16 +156,16 @@ monthly_counts <- monthly_counts |>
 
 ggplot(monthly_counts, aes(x = m_lab, y = encounters)) +
   geom_boxplot() +
-  labs(title = "Figure 2. Seasonality by month (counts across years)", 
+  labs(title = "Figure 3. Seasonality by month (counts across years)", 
        x = NULL, 
        y = "Encounters")+
    theme_minimal(base_size = 12)
 
 
 ```
-Figure 1. Monthly time-series of orca encounters (x-axis: YYYY-MM; y-axis: encounters per month), showing month-to-month variation in observations.
+Figure 2. Monthly time-series of orca encounters (x-axis: YYYY-MM; y-axis: encounters per month), showing month-to-month variation in observations.
 
-Figure 2. Boxplots of monthly encounter counts across years (x-axis: month abbreviation; y-axis: encounters). Each box summarizes the distribution of counts for that month over all years in the dataset.
+Figure 3. Boxplots of monthly encounter counts across years (x-axis: month abbreviation; y-axis: encounters). Each box summarizes the distribution of counts for that month over all years in the dataset.
 
 Result. Both figures indicate a pronounced seasonal peak in September. Across years, the median number of encounters in September is ≈18, whereas the median for other months is generally <10, indicating substantially higher activity in September.
 
@@ -197,12 +198,12 @@ ggplot(Sep_share_on_year,aes(x=year,y=proportion))+
          geom_text(aes(label = scales::percent(proportion, accuracy = 1)),
             vjust = -0.6, size = 3, check_overlap = TRUE)+
          scale_y_continuous(labels = percent_format(accuracy =1))+
-         labs(title = "Figure 3.Proportion of encounters in September by year",
+         labs(title = "Figure 4.Proportion of encounters in September by year",
               x= "Year",
               y= "Sep proportion of annual") +
          theme_minimal(base_size = 12)
 ```
-Figure 3. Line chart of the share of annual encounters occurring in September, by year (x-axis: year; y-axis: September share of the yearly total).
+Figure 4. Line chart of the share of annual encounters occurring in September, by year (x-axis: year; y-axis: September share of the yearly total).
 
 Interpretation. The September share varies across 2017–2024 but never falls below ~15%, which is well above September’s calendar share of the year (~8.3%). Taken together with Figures 1–2, this indicates a clear seasonal pattern with a consistent peak in September.
 
@@ -256,13 +257,13 @@ duration_time_df <- duration_time_df |>
   ggplot(duration_time_df, aes(x = seconds)) +
   geom_histogram(binwidth = 1000, fill = "skyblue", color = "black") +
   labs(
-    title = "Figure 4.Encounter duration distribution by 1000s bins",
+    title = "Figure 5.Encounter duration distribution by 1000s bins",
     x = "Duration",
     y = "Encounters"
   )+theme_minimal(base_size = 12)
 ```
 
-Figure 4. Histogram of encounter durations (x-axis: duration in 1,000-second bins; y-axis: number of encounters).
+Figure 5. Histogram of encounter durations (x-axis: duration in 1,000-second bins; y-axis: number of encounters).
 
 Interpretation. The distribution is right-skewed with a long tail of very long encounters. Most encounters fall between 1,000 and 8,000 seconds, with the modal bin at 3,000–4,000 seconds (86 encounters).
 
@@ -312,13 +313,13 @@ enc_sf <- st_as_sf(enc, coords = c("lon","lat"), crs = 4326)
 p_points <-
   ggplot(enc_sf) +
   geom_sf() +
-  labs(title = "Figure 5.Orca Encounters: Overall Spatial Distribution") +
+  labs(title = "Figure 6.Orca Encounters: Overall Spatial Distribution") +
   theme_minimal(base_size = 12)
 
 print(p_points)
 
 ```
-Figure 5. Map of orca encounter locations.
+Figure 6. Map of orca encounter locations.
 
 Interpretation. Encounters are not uniformly distributed; instead, they show clear spatial clustering with noticeable gaps between clusters. The map also highlights an outlying point north of 50.0° N, which may reflect either a genuine distant sighting or a data-entry/positioning error. Overall, Figure 5 provides a concise overview of the spatial pattern of encounters.
 
@@ -362,14 +363,14 @@ p_hex <-
   geom_sf(aes(fill = n), color = NA) +
   scale_fill_viridis_c(option = "C", direction = -1) +
   labs(
-    title = sprintf("Figure 6.Encounter Hotspots (Hex ~%d km)", HEX_SIZE_M/1000),
+    title = sprintf("Figure 7.Encounter Hotspots (Hex ~%d km)", HEX_SIZE_M/1000),
     fill  = "Count"
   ) +
   theme_minimal(base_size = 12)
 
 print(p_hex)
 ```
-Figure 6. Hexbin heat map of encounter hotspots (hex size ≈ 5 km). Darker hexagons indicate higher encounter counts.
+Figure 7. Hexbin heat map of encounter hotspots (hex size ≈ 5 km). Darker hexagons indicate higher encounter counts.
 
 Interpretation. Consistent with Figure 5, encounters are concentrated within 48.0°–49.0° N and 123.5°–123.0° W, indicating a clear spatial core rather than a uniform distribution.
 
@@ -406,7 +407,7 @@ if (has_leaflet) {
 
 
 ```
-Interpretation. The reproducible map clarifies the coastline geometry behind Figure 5: the arc-shaped pattern of encounters follows the bay shoreline, with the majority of sightings clustered within the bay rather than offshore. This indicates that the observed spatial pattern is largely coastline-constrained.
+Interpretation. The reproducible map clarifies the coastline geometry behind Figure 6: the arc-shaped pattern of encounters follows the bay shoreline, with the majority of sightings clustered within the bay rather than offshore. This indicates that the observed spatial pattern is largely coastline-constrained.
 
 
 
@@ -506,12 +507,12 @@ top_observers %>%
   ggplot(aes(x = reorder(observers, n), y = n)) +
   geom_col() +
   coord_flip() +
-  labs(title = "Figure 7.Most Frequent Observers", x = NULL, y = "Count") +
+  labs(title = "Figure 8.Most Frequent Observers", x = NULL, y = "Count") +
   theme_minimal(base_size = 12)
 
   
 ```
-Figure 7. Top 20 observers by number of encounters. Dave Ellifrit records the most encounters. Mark Malleson ranks second with ~300 encounters—roughly twice the third-ranked observer. Together, Dave Ellifrit and Mark Malleson stand out as the most active observers in the dataset.
+Figure 8. Top 20 observers by number of encounters. Dave Ellifrit records the most encounters. Mark Malleson ranks second with ~300 encounters—roughly twice the third-ranked observer. Together, Dave Ellifrit and Mark Malleson stand out as the most active observers in the dataset.
 
 ```{r echo=FALSE}
 if (!is.na(col_vessel)) {
@@ -534,7 +535,7 @@ if (!is.na(col_vessel)) {
   ggplot(top10_v, aes(x = reorder(.data[[col_vessel]], n), y = n)) +
     geom_col() +
     coord_flip() +
-    labs(title = "Figure 8.Top 10 active vessels by number of encounters",
+    labs(title = "Figure 9.Top 10 active vessels by number of encounters",
        x="vessel",y = "Encounters")+
     theme_minimal(base_size = 12)
 }
@@ -542,7 +543,7 @@ if (!is.na(col_vessel)) {
 
 
 ```
-Figure 8. Top 10 vessels by number of encounters. Orcinus records the most encounters overall, while Mike1 ranks second with ~300 encounters. Both Orcinus and Mike1 clearly stand out as the most active vessels in the dataset.
+Figure 9. Top 10 vessels by number of encounters. Orcinus records the most encounters overall, while Mike1 ranks second with ~300 encounters. Both Orcinus and Mike1 clearly stand out as the most active vessels in the dataset.
 
 
 ## Text Exploration of Encounters
@@ -590,13 +591,13 @@ ggplot(top_words %>% slice_max(n, n = 20),
             hjust = -0.2,        
             size = 2.5) + 
   coord_flip() +
-  labs(title = "Figure 9.Top words in encounter descriptions",
+  labs(title = "Figure 10.Top words in encounter descriptions",
        x = NULL, y = "Count") +
   theme_minimal(base_size = 12)
 ```
 
 
-From Figure 9, what we can get is that in the encounter summaries, the most frequent word is south, the second frequent word is island. "south" appears 1645 times and "island" appears 1633 times.
+From Figure 10, what we can get is that in the encounter summaries, the most frequent word is south, the second frequent word is island. "south" appears 1645 times and "island" appears 1633 times.
 
 
 
