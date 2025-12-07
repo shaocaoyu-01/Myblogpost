@@ -1,5 +1,5 @@
 ---
-title: "ETC5521 Diving Deeper into Data Exploration: Assignment 1"
+title: "Explorations of the Orcas distribution"
 author: "Caoyu Shao"
 date: "Aug 18, 2025"
 quarto-required: ">=1.3.0"
@@ -79,7 +79,7 @@ data("cwr_untidy",package = "orcas")
 ```
 
 
-## Question 1 
+## Temporal Patterns 
 
 ```{r echo=FALSE}
 cwr_tidy$date <- as.Date(cwr_tidy$date)
@@ -265,7 +265,7 @@ Figure 4. Histogram of encounter durations (x-axis: duration in 1,000-second bin
 Interpretation. The distribution is right-skewed with a long tail of very long encounters. Most encounters fall between 1,000 and 8,000 seconds, with the modal bin at 3,000–4,000 seconds (86 encounters).
 
 
-## Question 2
+## Spatial Patterns
 
 
 ```{r echo=FALSE}
@@ -408,7 +408,7 @@ Interpretation. The reproducible map clarifies the coastline geometry behind Fig
 
 
 
-## Question 3
+## Summary of Encounters
 
 ```{r echo=FALSE}
 library(dplyr)
@@ -543,7 +543,7 @@ if (!is.na(col_vessel)) {
 Figure 8. Top 10 vessels by number of encounters. Orcinus records the most encounters overall, while Mike1 ranks second with ~300 encounters. Both Orcinus and Mike1 clearly stand out as the most active vessels in the dataset.
 
 
-## Question 4
+## Text Exploration of Encounters
 
 ```{r echo=FALSE}
 library(dplyr)
