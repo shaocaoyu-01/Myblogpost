@@ -3,17 +3,25 @@ project:
 
 
 website:
-  title: "Caoyu · Analytics Notes"
-  site-url: https://github.com/ETC5523-2025/assignment-3-creating-a-blog-shaocaoyu-01
+  title: "Caoyu Shao"
   navbar:
-    background: yellow
+    left:
+      - text: Home
+        href: about.qmd
+      - text: Blog
+        href: index.qmd
+      - text: CV
+        href: CV.pdf
     right:
-       - about.qmd
-       - icon: github
-         href: https://github.com/shaocaoyu-01
-         aria-label: GitHub
+      - icon: github
+        href: https://github.com/shaocaoyu-01
+      - icon: linkedin
+        href: https://www.linkedin.com/in/samuel-shao0058
 
 format:
   html:
+    theme: cosmo
     css: styles.css
-    theme: flatly
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

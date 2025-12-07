@@ -7,8 +7,8 @@ about:
      - icon: github
        text: Github
        href: https://github.com/shaocaoyu-01
-     - icon: linkin
-       text: Linkin
+     - icon: linkedin
+       text: Linkedin
        href: https://www.linkedin.com/in/samuel-shao0058
 ---
 
