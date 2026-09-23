@@ -1,0 +1,37 @@
+---
+title: "Provincial Development and Economic Convergence in China"
+author: "Caoyu Shao"
+date: "2025-06-06"
+description: "A panel-data study of provincial GDP per capita, growth, regional inequality, and convergence in China."
+categories: [University Assignment, Economics, China, Panel Data]
+page-layout: full
+toc: false
+resources:
+  - Assignment4.html
+  - china_gdp_per_capita.gif
+  - "Assignment4_files/**"
+---
+
+::: {.assignment-intro}
+This project examines whether economic development across mainland China's provinces shows a cumulative “Matthew effect” or a movement toward regional convergence. It assembles provincial data on GDP, population, industrial structure, investment, urbanisation, education, and trade, then combines descriptive measures with panel regression and spatial analysis.
+
+## Key findings
+
+- Dispersion measures and the estimated relationship between initial income and subsequent growth support provincial convergence in GDP per capita.
+- Industrial structure and trade openness help explain differences in provincial growth, while some controls are not statistically distinguishable from zero in the fitted model.
+- Regional gaps remain substantial even as the longer-run national pattern points toward convergence.
+- The animated provincial map and comparisons of representative provinces show that convergence can coexist with very different development paths.
+
+::: {.assignment-actions}
+[Open the complete report](Assignment4.html){.btn .btn-primary target="_blank"}
+[View the source repository](https://github.com/shaocaoyu-01/Report-on-China-Provincial-development){.btn .btn-outline-secondary target="_blank"}
+:::
+
+## Complete report
+
+The original report is embedded below with its figures, animation, models, references, and supporting discussion intact.
+:::
+
+::: {.assignment-report-shell}
+<iframe class="assignment-report" src="Assignment4.html" title="China provincial development — complete report" loading="lazy"></iframe>
+:::

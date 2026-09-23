@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Caoyu Shao">
+
+<title>ETC5512: Assignment 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="assignment1_35323876_files/libs/clipboard/clipboard.min.js"></script>
+<script src="assignment1_35323876_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="assignment1_35323876_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="assignment1_35323876_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="assignment1_35323876_files/libs/quarto-html/popper.min.js"></script>
+<script src="assignment1_35323876_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="assignment1_35323876_files/libs/quarto-html/anchor.min.js"></script>
+<link href="assignment1_35323876_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="assignment1_35323876_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="assignment1_35323876_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="assignment1_35323876_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="assignment1_35323876_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ETC5512: Assignment 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Caoyu Shao </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="case-study-1" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-1">Case Study 1</h2>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The data downloaded from the NSW traffic portal is saved in file <code>NSW_cyclone_incidents_raw.csv</code> in the <code>data</code> directory.</p>
+<p>The processed data is saved in the file <code>NSW_cyclone_incidents_processed.csv</code> in the <code>data</code> directory.</p>
+<p>To get started in read in the raw data that you downloaded directly from the portal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.1     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/shaocaoyu/Downloads/ETC5512_Assignment_1_Rproject</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in your raw data here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="documenting-your-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="documenting-your-workflow">Documenting your workflow</h3>
+<p><strong>Steps to download the data</strong></p>
+<p>Write the steps here you took to download the raw data here.</p>
+<ol type="1">
+<li><p>Navigate to the NSW cyclone incidents data by going to <a href="https://www.livetraffic.com/historical-data-search" class="uri">https://www.livetraffic.com/historical-data-search</a></p></li>
+<li><p>Select the “Date range” from the left box, in this report, we choose the past 30 days.</p></li>
+<li><p>Then fill the blank with <strong>Lismore</strong> under the line “enter a location”</p></li>
+<li><p>Then choose the <strong>50km</strong> as radius</p></li>
+<li><p>In the table , we find search icon, click on it, and we will see the different signs which mean the impacts from the ex-Tropical Cyclone Alfred.</p></li>
+<li><p>If the data is proper, and then click on the button “Download CSV”</p></li>
+</ol>
+<p><strong>Steps to process the data</strong></p>
+<p>Write the steps here you took to process the raw data. The final step should be saving the processed data.</p>
+<ol type="1">
+<li>read the data</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cyclone_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/NSW_cyclone_incidents_raw.csv"</span>, <span class="at">skip =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1970 Columns: 27
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (26): ID, Title, Location, Created, Ended, Version, Date (Planned Incide...
+dbl  (1): Queue_length
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Due to the raw data has metadata on the top of the table, and it will lead to the mistake if we don't skip the metadata.So we choose to skip the first 6 lines.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="1">
+<li>filter the data which is related to Alfred</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>alfred_rows <span class="ot">&lt;-</span> cyclone_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"alfred"</span>, Title, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(alfred_rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ID"                       "Title"                   
+ [3] "Location"                 "Created"                 
+ [5] "Ended"                    "Version"                 
+ [7] "Date (Planned Incidents)" "Updated"                 
+ [9] "Traffic conditions"       "Coordinates"             
+[11] "Queue_length"             "Impact"                  
+[13] "Attending"                "Advice"                  
+[15] "Other_advice"             "Diversions"              
+[17] "Public transport"         "Website links"           
+[19] "Traffic arrangement"      "Download maps"           
+[21] "Reduced speed limit"      "Expected delay"          
+[23] "Organisation name"        "Organisation email"      
+[25] "Organisation contact"     "Organisation website"    
+[27] "Geometry collection"     </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(alfred_rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 27
+# ℹ 27 variables: ID &lt;chr&gt;, Title &lt;chr&gt;, Location &lt;chr&gt;, Created &lt;chr&gt;,
+#   Ended &lt;chr&gt;, Version &lt;chr&gt;, Date (Planned Incidents) &lt;chr&gt;, Updated &lt;chr&gt;,
+#   Traffic conditions &lt;chr&gt;, Coordinates &lt;chr&gt;, Queue_length &lt;dbl&gt;,
+#   Impact &lt;chr&gt;, Attending &lt;chr&gt;, Advice &lt;chr&gt;, Other_advice &lt;chr&gt;,
+#   Diversions &lt;chr&gt;, Public transport &lt;chr&gt;, Website links &lt;chr&gt;,
+#   Traffic arrangement &lt;chr&gt;, Download maps &lt;chr&gt;, Reduced speed limit &lt;chr&gt;,
+#   Expected delay &lt;chr&gt;, Organisation name &lt;chr&gt;, Organisation email &lt;chr&gt;, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I have searched the cyclone_data for key words "Alfred" and found nothing about it(alfred_rows have no observations).</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>cyclone_data <span class="ot">&lt;-</span> cyclone_data <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Created_dt =</span> <span class="fu">as.POSIXct</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">strptime</span>(Created, <span class="st">"%a %d %b %Y %I:%M%p"</span>, <span class="at">tz =</span> <span class="st">"Australia/Sydney"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>data_after_2025_03_07 <span class="ot">&lt;-</span> cyclone_data <span class="sc">%&gt;%</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Created_dt <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">"2025-03-07"</span>, <span class="at">tz =</span> <span class="st">"Australia/Sydney"</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_after_2025_03_07)         </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1105</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(data_after_2025_03_07<span class="sc">$</span>Created_dt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-07 02:04:00 AEDT" "2025-03-21 16:10:00 AEDT"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#And then we turn to Goole，I found that the Alfred made landfall in 7 Mar, 2025. So I choose to filter the data by date. Then we get the "data_after_2025_03_07", which is qualified for assignment)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>In the “Title” volumn, we filter the incidents which is related to Alfred.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Unique values:"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(data_after_2025_03_07<span class="sc">$</span>Title)), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Unique values: 20 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">table</span>(data_after_2025_03_07<span class="sc">$</span>Title), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                               FLOODING         ADVERSE WEATHER Water over road 
+                                    331                                     288 
+                     HAZARD Fallen tree                 ADVERSE WEATHER Cyclone 
+                                    231                                      57 
+                     HAZARD Road damage              CHANGED TRAFFIC CONDITIONS 
+                                     44                                      28 
+                 HAZARD Water over road                                  HAZARD 
+                                     24                                      22 
+                      HAZARD Wires down                           HAZARD Debris 
+                                     16                                      14 
+                              CRASH Car                                   CRASH 
+                                      8                                       7 
+                       HAZARD Landslide CHANGED TRAFFIC CONDITIONS Road Closure 
+                                      7                                       6 
+                       CRASH Truck, Car                            CRASH 2 cars 
+                                      6                                       5 
+                        ADVERSE WEATHER                           CRASH Vehicle 
+                                      4                                       3 
+                         HAZARD Pothole                      EMERGENCY ROADWORK 
+                                      3                                       1 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What we need to do is to filter the incidents which is related to cyclone</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>data_relevant <span class="ot">&lt;-</span> data_after_2025_03_07 <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"FLOODING|ADVERSE WEATHER Water over road|HAZARD Fallen tree|ADVERSE WEATHER Cyclone|HAZARD Road damage|CHANGED TRAFFIC CONDITIONS|HAZARD Water over road|HAZARD Water over road|HAZARD|HAZARD Wires down|HAZARD Debris|HAZARD Landslide|CHANGED TRAFFIC CONDITIONS Road Closure|ADVERSE WEATHER|EMERGENCY ROADWORK"</span>, Title, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="4" type="1">
+<li>select the varieties</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>cyclone_selected <span class="ot">&lt;-</span> data_relevant <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Title"</span>, <span class="st">"Location"</span>, <span class="st">"Created_dt"</span>, <span class="st">"Version"</span>, <span class="st">"Updated"</span>, <span class="st">"Coordinates"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="5" type="1">
+<li>rename the data and store it into the data file</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(cyclone_selected, <span class="st">"data/NSW_cyclone_incidents_processed.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Documenting your Data</p>
+<ul>
+<li>title：Alfred impact on road</li>
+<li>creator：Caoyu Shao(35323876)</li>
+<li>date_created: 3/22/2025</li>
+<li>source: <a href="https://www.livetraffic.com/historical-data-search">NSW Government Portal</a></li>
+<li><strong>explanation of the different variables</strong>: <strong>1.Titles mean</strong> the different types of incidents. <strong>2.The location</strong> means the places where these incidents happen. <strong>3.created_dt</strong> means the time when the incident was reported. <strong>4.version</strong> means that during the process there are many reports which is regulated by time.it means this is the number of times this incident has been reported. <strong>5.Updated</strong> means time to report the incident <strong>6.Coordinates</strong> mean precise latitude and longitude</li>
+<li><strong>reasons for choosing Lismore and the date after 3/7/2025</strong>: <strong>1.location</strong>, it is located on the north-east of NSW, near the sea, susceptible for the cyclone from the tropical areas and the sea <strong>2. it</strong> <strong>suffered from cyclone for many times in history,</strong> so choose this place could help us research because data here is much accurate than other places simply due to abundance of experience. <strong>3.data accessibility and diveristy,</strong> we could download the data easily from NSW portal and from the map we could see various kinds of incident happen here. <strong>4.Alfred didn’t make landfall until 3/7/2025,</strong> and that’s why I choose to filter the data after that.</li>
+<li><strong>The reason for us to select incidents</strong> is that the incidents types are caused by cyclone like flooding, adverse weather water over road, hazard fallen tree, adverse weather cyclone, hazard road damage, changed traffic conditions, hazard water over road, hazard water over road, hazard, hazard wires down, hazard debris, hazard landslide, changed traffic conditions road closure, adverse weather, emergency roadwork directly or undirectly.</li>
+<li><strong>The data sample</strong> is a representative of the population. <strong>The population</strong> is that all places where roads are impacted by Alfred.</li>
+<li><strong>Any limitation</strong>: All the incidents are reported by drivers, and this will lead to more reports in busy roads while some incidents may be reported much later than it happened because few drivers would run across and even worse never reported in the record.</li>
+<li><strong>licence information</strong>: We could freely copy, distribute and use the data, but we need to acknowledge its origins. When we need to modify the data, we need to write down clearly about what modification we have made to the data.</li>
+</ul>
+</section>
+</section>
+<section id="case-study-2" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-2">Case Study 2</h2>
+<section id="data-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-1">Data</h3>
+<p>The data downloaded for this case study is downloaded directly from the API and does not need to be locally stored as your steps should be reproducible below.</p>
+<p>The processed data is saved in the file <code>NSW_kangaroo_sightings_processed.csv</code> in the <code>data</code> directory.</p>
+</section>
+<section id="documenting-your-workflow-1" class="level3">
+<h3 class="anchored" data-anchor-id="documenting-your-workflow-1">Documenting your workflow</h3>
+<p><strong>Steps to download the data</strong></p>
+<p>Write the steps here you took to download the raw data from the Australian Living Atlas API in R.</p>
+<p>1.Download the data that we need by using galah packages</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R example using galah package for reproducibility</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(galah)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>galah: version 2.1.1
+ℹ Default node set to ALA (ala.org.au).
+ℹ See all supported GBIF nodes with `show_all(atlases)`.
+ℹ To change nodes, use e.g. `galah_config(atlas = "GBIF")`.
+Attaching package: 'galah'
+
+The following object is masked from 'package:dplyr':
+
+    desc
+
+The following object is masked from 'package:tidyr':
+
+    unnest
+
+The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">galah_config</span>(<span class="at">email=</span><span class="st">"csha0058@student.monash.edu"</span>)  </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># that is my ALA account email</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Steps to process the data</strong></p>
+<p>1.select the date length and location</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>kangaroo_data <span class="ot">&lt;-</span> <span class="fu">galah_call</span>() <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify</span>(<span class="st">"Macropus giganteus"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2019</span>, year <span class="sc">&lt;=</span> <span class="dv">2025</span>, stateProvince <span class="sc">==</span> <span class="st">"New South Wales"</span>) <span class="sc">|&gt;</span>     </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">galah_select</span>(<span class="at">group =</span> <span class="st">"basic"</span>) <span class="sc">|&gt;</span>                     </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Request for 82217 occurrences placed in queue
+Current queue length: 1</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Downloading</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To make sure that our data is enough and diverse, we choose the occurence data of eastern grey kangaroo(Macropus giganteus) from 2019 to 2025, in all 7 years. According to the request of assignment we choose NSW as our location.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>2.choose the relevant variables</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(dplyr)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>kangaroo_related <span class="ot">&lt;-</span> kangaroo_data <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"eventDate"</span>, <span class="st">"decimalLatitude"</span>, <span class="st">"decimalLongitude"</span>, </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"scientificName"</span>, <span class="st">"dataResourceName"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>3.complete download and then move it to the proper position</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(kangaroo_related, <span class="st">"data/NSW_kangaroo_sightings_processed.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#then move to data file,by put the kangaroo_data to data files by click on the more option and then move to data files</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="documenting-your-data" class="level3">
+<h3 class="anchored" data-anchor-id="documenting-your-data">Documenting your Data</h3>
+<p>Here is where you provide details of:</p>
+<ul>
+<li><strong>Description of all variables</strong>: <strong>1.eventDate</strong>：it means the date the grey kangaroo occur <strong>2.decimal_latitude:</strong>Decimal Latitude is a geographic coordinate expressed as a single decimal number, indicating how far north or south a location is from the Equator. <strong>3.decimal_longitude</strong>:Decimal Longitude is a geographic coordinate expressed as a decimal number that shows how far east or west a place is from the Prime Meridian (0° Longitude). <strong>4.locality</strong>：it means the location where it is found. <strong>5.scientific_name:</strong> it means the name of eastern grey kangaroo <strong>6.data_source_name</strong>: it means the name where the data come from ）</li>
+<li><strong>license information:</strong> We could freely copy, distribute and use the data, but we need to acknowledge its origins. When we need to modify the data, we need to write down clearly about what modification we have made to the data.</li>
+<li><strong>Any limitations</strong>: First of all, all of our data are based on observation, they may be observed in where there are many people, near the town, near the road. In the places where is remote, no records appear. Besides, the occurence record will vary between different time.For example, in the daytime, more records, but in the evening, less records. Lastly, observations may not so accurate in location and it will lead to bias.</li>
+</ul>
+</section>
+<section id="citations" class="level3">
+<h3 class="anchored" data-anchor-id="citations">Citations</h3>
+<p>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi:10.21105/joss.01686 <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a>.</p>
+<p>Müller K (2020). <em>here: A Simpler Way to Find Your Files</em>. R package version 1.0.1, <a href="https://CRAN.R-project.org/package=here" class="uri">https://CRAN.R-project.org/package=here</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>To cite package 'tidyverse' in publications use:
+
+  Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,
+  Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller
+  E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,
+  Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). "Welcome to
+  the tidyverse." _Journal of Open Source Software_, *4*(43), 1686.
+  doi:10.21105/joss.01686 &lt;https://doi.org/10.21105/joss.01686&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    title = {Welcome to the {tidyverse}},
+    author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},
+    year = {2019},
+    journal = {Journal of Open Source Software},
+    volume = {4},
+    number = {43},
+    pages = {1686},
+    doi = {10.21105/joss.01686},
+  }</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"here"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>To cite package 'here' in publications use:
+
+  Müller K (2025). _here: A Simpler Way to Find Your Files_. R package
+  version 1.0.2, &lt;https://CRAN.R-project.org/package=here&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {here: A Simpler Way to Find Your Files},
+    author = {Kirill Müller},
+    year = {2025},
+    note = {R package version 1.0.2},
+    url = {https://CRAN.R-project.org/package=here},
+  }</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"readr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>To cite package 'readr' in publications use:
+
+  Wickham H, Hester J, Bryan J (2024). _readr: Read Rectangular Text
+  Data_. R package version 2.1.5,
+  &lt;https://CRAN.R-project.org/package=readr&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {readr: Read Rectangular Text Data},
+    author = {Hadley Wickham and Jim Hester and Jennifer Bryan},
+    year = {2024},
+    note = {R package version 2.1.5},
+    url = {https://CRAN.R-project.org/package=readr},
+  }</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"dplyr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>To cite package 'dplyr' in publications use:
+
+  Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A
+  Grammar of Data Manipulation_. R package version 1.1.4,
+  &lt;https://CRAN.R-project.org/package=dplyr&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {dplyr: A Grammar of Data Manipulation},
+    author = {Hadley Wickham and Romain François and Lionel Henry and Kirill Müller and Davis Vaughan},
+    year = {2023},
+    note = {R package version 1.1.4},
+    url = {https://CRAN.R-project.org/package=dplyr},
+  }</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"galah"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>To cite galah in publications use:
+
+  Westgate M, Kellie D, Stevenson M, Newman P (2025). _galah:
+  Biodiversity Data from the GBIF Node Network_. R package version
+  2.1.1, &lt;https://CRAN.R-project.org/package=galah&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {galah: Biodiversity Data from the GBIF Node Network},
+    author = {Martin Westgate and Dax Kellie and Matilda Stevenson and Peggy Newman},
+    year = {2025},
+    note = {R package version 2.1.1},
+    url = {https://CRAN.R-project.org/package=galah},
+  }</code></pre>
+</div>
+</div>
+</section>
+<section id="ai-acknowledgment" class="level3">
+<h3 class="anchored" data-anchor-id="ai-acknowledgment">AI acknowledgment</h3>
+<section id="case1" class="level4">
+<h4 class="anchored" data-anchor-id="case1">case1</h4>
+<section id="data-acknowldgement" class="level5">
+<h5 class="anchored" data-anchor-id="data-acknowldgement">Data acknowldgement</h5>
+<p>This study includes data obtained from the <a href="https://livetraffic.com/historical-data-search">Live Traffic NSW Historical Data Portal</a>, provided by Transport for New South Wales (Transport for NSW). The data is publicly available and is used here for research and educational purposes. We gratefully acknowledge the NSW Government for providing access to this resource.</p>
+</section>
+<section id="query-details" class="level5">
+<h5 class="anchored" data-anchor-id="query-details">Query details</h5>
+<ul>
+<li><p><strong>Source</strong>: Live Traffic NSW</p></li>
+<li><p><strong>Area of Interest</strong>: 50 km radius around Lismore, NSW</p></li>
+<li><p><strong>Time Range</strong>: [2025.3.7-2025.3.20]</p></li>
+</ul>
+</section>
+<section id="query-link" class="level5">
+<h5 class="anchored" data-anchor-id="query-link">Query link</h5>
+<p>Download area: <a href="https://livetraffic.com/historical-data-search">Live Traffic NSW Historical Data Portal</a></p>
+</section>
+</section>
+<section id="case2" class="level4">
+<h4 class="anchored" data-anchor-id="case2">case2</h4>
+<section id="data-acknowledgement" class="level5">
+<h5 class="anchored" data-anchor-id="data-acknowledgement">Data acknowledgement</h5>
+<p>This study includes data sourced from the Atlas of Living Australia (ALA). The ALA is made possible by contributions from its partners and is supported by the Australian Government through the National Collaborative Research Infrastructure Strategy (NCRIS).</p>
+</section>
+<section id="query-details-1" class="level5">
+<h5 class="anchored" data-anchor-id="query-details-1">Query details</h5>
+<ul>
+<li><p>Species: Macropus giganteus</p></li>
+<li><p>filter_used</p>
+<p>year:2019-2025</p>
+<p>states: NSW</p></li>
+</ul>
+</section>
+<section id="query-links" class="level5">
+<h5 class="anchored" data-anchor-id="query-links">Query links</h5>
+<ul>
+<li><p><strong>Species Profile</strong>: <a href="https://bie.ala.org.au/species/Macropus_giganteus">Macropus giganteus – ALA</a></p></li>
+<li><p><strong>Occurrence Records</strong>: <a href="https://biocache.ala.org.au/occurrences/666fb3e7-b82d-49ed-911d-d29e68b51ac3">Macropus giganteus Observations – ALA</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

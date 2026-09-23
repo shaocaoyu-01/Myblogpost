@@ -1,0 +1,41 @@
+---
+title: "Income Inequality and Life Expectancy"
+author:
+  - "Vishwamber Reddy"
+  - "Caoyu Shao"
+  - "Hongyu Yin"
+date: "2025-06-02"
+description: "A cross-national study of the relationship between the Gini coefficient and life expectancy from 1990 to 2020."
+categories: [University Assignment, Public Health, Inequality, Statistics]
+page-layout: full
+toc: false
+resources:
+  - Assignment-3.html
+  - Assignment-3.pdf
+  - "Assignment-3_files/**"
+---
+
+::: {.assignment-intro}
+This study combines life-expectancy data from Our World in Data with income-inequality data from the World Bank to examine national patterns between 1990 and 2020. It uses longitudinal summaries and cross-sectional comparisons to ask whether more equal societies tend to experience longer life spans.
+
+## Key findings
+
+- Income inequality and life expectancy have a moderate negative correlation in the assembled country-year data (`r = -0.45`).
+- Average life expectancy rose over the study period while the average Gini coefficient declined slightly.
+- Countries with Gini coefficients below 0.30 commonly achieved life expectancy above 80 years, whereas countries above 0.45 often recorded life expectancy below 70 years.
+- The association is persistent but does not establish causation; geography, development, health systems, and other factors also shape outcomes.
+
+::: {.assignment-actions}
+[Open the complete HTML report](Assignment-3.html){.btn .btn-primary target="_blank"}
+[Download the PDF](Assignment-3.pdf){.btn .btn-outline-primary target="_blank"}
+[View the source repository](https://github.com/shaocaoyu-01/report-between-life-expectation-and-Gini-coefficient){.btn .btn-outline-secondary target="_blank"}
+:::
+
+## Complete report
+
+The original group report is embedded below with its figures, methods, discussion, and references intact.
+:::
+
+::: {.assignment-report-shell}
+<iframe class="assignment-report" src="Assignment-3.html" title="Income inequality and life expectancy — complete report" loading="lazy"></iframe>
+:::

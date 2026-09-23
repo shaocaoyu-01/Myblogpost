@@ -1,0 +1,38 @@
+---
+title: "Reproducible NSW Data Workflows"
+subtitle: "Cyclone-related traffic incidents and eastern grey kangaroo sightings"
+author: "Caoyu Shao"
+date: "2025-11-02"
+description: "Two documented workflows for collecting, cleaning, validating, and citing open NSW data."
+categories: [University Assignment, Data Wrangling, Reproducibility, NSW]
+page-layout: full
+toc: false
+resources:
+  - assignment1_35323876.html
+  - "assignment1_35323876_files/**"
+---
+
+::: {.assignment-intro}
+This assignment develops two reproducible data workflows. The first processes NSW Live Traffic records connected with ex-Tropical Cyclone Alfred near Lismore. The second retrieves eastern grey kangaroo occurrence records from the Atlas of Living Australia and documents the resulting biodiversity dataset.
+
+## What the project demonstrates
+
+- A clear separation between downloaded raw files and analysis-ready processed data.
+- Repeatable filtering, date handling, geographic scoping, and field selection in R.
+- Documentation of data provenance, licensing, citations, and the manual steps needed to reproduce each download.
+
+Together, the case studies show how open government and biodiversity data can be turned into transparent, auditable research inputs.
+
+::: {.assignment-actions}
+[Open the complete report](assignment1_35323876.html){.btn .btn-primary target="_blank"}
+[View the source repository](https://github.com/shaocaoyu-01/NSW_hurricane_influence_results){.btn .btn-outline-secondary target="_blank"}
+:::
+
+## Complete report
+
+The original report is embedded below with its code, tables, links, and citations intact.
+:::
+
+::: {.assignment-report-shell}
+<iframe class="assignment-report" src="assignment1_35323876.html" title="Reproducible NSW Data Workflows — complete report" loading="lazy"></iframe>
+:::

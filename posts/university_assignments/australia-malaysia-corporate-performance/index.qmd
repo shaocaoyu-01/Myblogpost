@@ -1,0 +1,38 @@
+---
+title: "Corporate Performance Through the Pandemic"
+subtitle: "An exploratory comparison of Australia and Malaysia, 2017–2021"
+author: "EMU Group"
+date: "2025-11-03"
+description: "A cross-country analysis of profitability, resilience, industry structure, and spatial patterns during COVID-19."
+categories: [University Assignment, Finance, Exploratory Data Analysis, COVID-19]
+page-layout: full
+toc: false
+resources:
+  - report.html
+---
+
+::: {.assignment-intro}
+This group project compares listed companies in Australia and Malaysia from 2017 to 2021 using OSIRIS financial data. It builds a common analytical dataset, uses robust statistics to handle strongly skewed company ratios, and explores national, industry, and geographic patterns before, during, and after the initial COVID-19 shock.
+
+## Key findings
+
+- Malaysian firms showed more stable profitability, liquidity, and capital structure, with median EBITDA margins remaining positive through 2020.
+- Australian firms displayed much wider variation and weaker median profitability, although some industries recovered as operating margins improved in 2021.
+- Both countries remained relatively conservative in their use of leverage, while Malaysian firms showed higher median asset efficiency.
+- Corporate activity clustered around major economic centres in both countries; location alone did not cleanly separate profitable from unprofitable firms.
+
+The report combines data cleaning, missingness analysis, robust time-series summaries, industry comparisons, interactive charts, and spatial maps.
+
+::: {.assignment-actions}
+[Open the complete report](report.html){.btn .btn-primary target="_blank"}
+[View the source repository](https://github.com/etc5521-2025/project-part-1-emu){.btn .btn-outline-secondary target="_blank"}
+:::
+
+## Complete report
+
+The original group report is embedded below with its interactive tables, charts, maps, and code intact.
+:::
+
+::: {.assignment-report-shell}
+<iframe class="assignment-report" src="report.html" title="Australia and Malaysia corporate performance — complete report" loading="lazy"></iframe>
+:::

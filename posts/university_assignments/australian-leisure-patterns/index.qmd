@@ -1,0 +1,37 @@
+---
+title: "How Australians Spend Their Spare Time"
+author: "Caoyu Shao"
+date: "2025-09-22"
+description: "An exploration of how leisure participation and time use vary across gender and generations in Australia."
+categories: [University Assignment, Data Analysis, Australia, Leisure]
+page-layout: full
+toc: false
+resources:
+  - report.html
+  - assignment.css
+---
+
+::: {.assignment-intro}
+This project uses Australian Bureau of Statistics leisure and time-use data to study how recreational choices differ across generations and gender. It examines active and passive pursuits, tests whether activities form a typical leisure mix, and places claims about declining reading in a broader population context.
+
+## Key findings
+
+- Gender gaps are strongest for some digital and social activities, but their size and direction vary by generation.
+- Older cohorts participate more in several passive activities, while younger cohorts show stronger participation in active pursuits and digital games.
+- Historical time-use data point to more time spent on care, work, and personal activities, alongside a decline in social and community interaction.
+
+The analysis reshapes multiple ABS worksheets into tidy panel data and uses exploratory graphics, heat maps, correlations, and regression diagnostics to compare patterns.
+
+::: {.assignment-actions}
+[Open the complete report](report.html){.btn .btn-primary target="_blank"}
+[View the source repository](https://github.com/shaocaoyu-01/Australians-spare-time-usage-report){.btn .btn-outline-secondary target="_blank"}
+:::
+
+## Complete report
+
+The original submitted report is embedded below with its figures, tables, and code intact.
+:::
+
+::: {.assignment-report-shell}
+<iframe class="assignment-report" src="report.html" title="How Australians Spend Their Spare Time — complete report" loading="lazy"></iframe>
+:::

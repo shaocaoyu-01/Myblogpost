@@ -2,8 +2,14 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/university_assignments/australia-malaysia-corporate-performance/index.html",
+      "/posts/university_assignments/nsw-cyclone-kangaroo-data/index.html",
       "/posts/blog_posts/blog_post.html",
-      "/posts/blog_posts/assign01-submission.html"
+      "/posts/university_assignments/australian-leisure-patterns/index.html",
+      "/posts/university_assignments/yarra-river-water-quality/index.html",
+      "/posts/blog_posts/assign01-submission.html",
+      "/posts/university_assignments/china-provincial-development/index.html",
+      "/posts/university_assignments/life-expectancy-income-inequality/index.html"
     ]
   }
 ]
