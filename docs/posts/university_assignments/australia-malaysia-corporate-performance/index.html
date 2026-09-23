@@ -8,9 +8,9 @@
 
 <meta name="author" content="EMU Group">
 <meta name="dcterms.date" content="2025-11-03">
-<meta name="description" content="A cross-country analysis of profitability, resilience, industry structure, and spatial patterns during COVID-19.">
+<meta name="description" content="A comparative report on profitability, resilience, asset efficiency and financial risk among Australian and Malaysian listed companies.">
 
-<title>Corporate Performance Through the Pandemic – Caoyu Shao</title>
+<title>The Pandemic Exposed Different Corporate Risk Profiles in Australia and Malaysia – Caoyu Shao</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -131,17 +130,19 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Corporate Performance Through the Pandemic</h1>
-<p class="subtitle lead">An exploratory comparison of Australia and Malaysia, 2017–2021</p>
+<h1 class="title">The Pandemic Exposed Different Corporate Risk Profiles in Australia and Malaysia</h1>
+<p class="subtitle lead">An exploratory comparison of listed companies, 2017–2021</p>
   <div class="quarto-categories">
     <div class="quarto-category">University Assignment</div>
     <div class="quarto-category">Finance</div>
@@ -152,12 +153,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    A cross-country analysis of profitability, resilience, industry structure, and spatial patterns during COVID-19.
+    A comparative report on profitability, resilience, asset efficiency and financial risk among Australian and Malaysian listed companies.
   </div>
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -181,29 +182,97 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="assignment-intro">
-<p>This group project compares listed companies in Australia and Malaysia from 2017 to 2021 using OSIRIS financial data. It builds a common analytical dataset, uses robust statistics to handle strongly skewed company ratios, and explores national, industry, and geographic patterns before, during, and after the initial COVID-19 shock.</p>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key findings</h2>
+<div class="report-article">
+<div class="report-lede">
+<p>Listed companies in the Australian and Malaysian samples entered the pandemic with very different financial distributions. Malaysian firms remained concentrated around positive operating margins and stable balance-sheet ratios. The Australian sample contained a much larger loss-making and near-break-even group, with the weakest median profitability in 2020. The contrast is large, but it must be interpreted as a difference between the observed OSIRIS samples rather than a verdict on the two national economies.</p>
+</div>
+<section id="executive-summary" class="level2 executive-summary">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive summary</h2>
 <ul>
-<li>Malaysian firms showed more stable profitability, liquidity, and capital structure, with median EBITDA margins remaining positive through 2020.</li>
-<li>Australian firms displayed much wider variation and weaker median profitability, although some industries recovered as operating margins improved in 2021.</li>
-<li>Both countries remained relatively conservative in their use of leverage, while Malaysian firms showed higher median asset efficiency.</li>
-<li>Corporate activity clustered around major economic centres in both countries; location alone did not cleanly separate profitable from unprofitable firms.</li>
+<li><strong>Malaysia’s median EBITDA margin stayed between roughly 10.5% and 12.5% from 2017 to 2021.</strong> Its median EBIT and return on assets dipped in 2020 and recovered in 2021.</li>
+<li><strong>Australia’s sample was far more dispersed and loss-heavy.</strong> Median profit margin fell from about −25% in 2017 to about −75% in 2020; median EBITDA margin reached roughly −50%.</li>
+<li><strong>The balance-sheet story was calmer than the profit story.</strong> Median current ratios remained healthy in both samples, and median leverage did not rise sharply during the pandemic.</li>
 </ul>
-<p>The report combines data cleaning, missingness analysis, robust time-series summaries, industry comparisons, interactive charts, and spatial maps.</p>
+</section>
+<section id="research-question-and-design" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-and-design">Research question and design</h2>
+<p>The project asks how the pandemic’s financial impact differed between Australian and Malaysian public companies. It uses Bureau van Dijk’s OSIRIS database for fiscal years 2017–2021, giving three pre-pandemic years and two pandemic-era years.</p>
+<p>Financial ratios are more comparable across currencies and company sizes than raw totals, so the analysis focuses on profit margin, EBITDA and EBIT margins, returns on assets and equity, current ratio, leverage, solvency and net-assets turnover. Duplicate company-year records were removed, implausible denominators were excluded and ratios were recalculated from base fields where possible. Because the distributions have long tails, medians and median absolute deviations describe the centre and spread.</p>
+<div class="metric-grid">
+<div class="metric-card">
+<div class="metric-value">
+<p>2017–2021</p>
+</div>
+<div class="metric-label">
+<p>fiscal-year coverage in the comparative panel</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>10.5–12.5%</p>
+</div>
+<div class="metric-label">
+<p>Malaysia’s median EBITDA margin range</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>≈2.0</p>
+</div>
+<div class="metric-label">
+<p>Malaysia’s stable median current ratio</p>
+</div>
+</div>
+</div>
+</section>
+<section id="profitability-separates-the-two-samples" class="level2">
+<h2 class="anchored" data-anchor-id="profitability-separates-the-two-samples">Profitability separates the two samples</h2>
+<p>Malaysia’s median profitability is stable and generally positive. Median return on assets moves from about 3.2% in 2017 to a low near 1.5% in 2020, then begins to recover. Median EBIT margin falls from roughly 9% to 6% before rebounding in 2021, while the EBITDA margin barely moves. That combination suggests that the 2020 squeeze was more visible after depreciation, amortisation and related charges than in cash-oriented operating earnings.</p>
+<p>Australia’s central estimates are much lower and the dispersion is wider. Median profit margin declines to about −75% in 2020 and median EBITDA margin to roughly −50%, followed by only a partial recovery. These extreme sample medians warrant caution: they may reflect the industry mix and coverage of the listed firms retained after cleaning, as well as genuine operating performance.</p>
+<div id="fig-profit-polarisation" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two density plots showing a wider loss-making and near-zero cluster in Australia and a tighter positive cluster in Malaysia.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-profit-polarisation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/figure-05.png" class="img-fluid figure-img" alt="Two density plots showing a wider loss-making and near-zero cluster in Australia and a tighter positive cluster in Malaysia.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-profit-polarisation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of net profit in the Australian and Malaysian samples. Values use an inverse-hyperbolic-sine transformation, which preserves zero and negative observations.
+</figcaption>
+</figure>
+</div>
+<p>The transformed distributions reveal a pattern that a single median misses. Both countries contain profitable firms, but Australia has a substantial negative cluster and a dense group near zero. Malaysia is more concentrated on the positive side. The transformation compresses the scale, so horizontal distances should be read as distributional structure rather than literal currency differences.</p>
+</section>
+<section id="the-2020-shock-amplified-an-existing-australian-tail" class="level2">
+<h2 class="anchored" data-anchor-id="the-2020-shock-amplified-an-existing-australian-tail">The 2020 shock amplified an existing Australian tail</h2>
+<p>The annual view shows that the Australian low-profit cluster was already present before COVID-19. It thickens in 2020 rather than appearing from nowhere. Malaysia’s distribution remains more concentrated on the profitable side throughout the five years.</p>
+<div id="fig-profit-years" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Faceted annual density plots showing profit distributions in Australia and Malaysia from 2017 through 2021.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-profit-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/figure-06.png" class="img-fluid figure-img" alt="Faceted annual density plots showing profit distributions in Australia and Malaysia from 2017 through 2021.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-profit-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Annual net-profit distributions for Australia and Malaysia, 2017–2021, using the same transformed scale.
+</figcaption>
+</figure>
+</div>
+<p>This changes the interpretation of the pandemic. For Malaysia, 2020 looks like a temporary earnings interruption within a stable operating and financing profile. For Australia, the pandemic intensified a pre-existing divide between profitable firms, firms around break-even and firms reporting losses.</p>
+</section>
+<section id="liquidity-and-leverage-remained-comparatively-stable" class="level2">
+<h2 class="anchored" data-anchor-id="liquidity-and-leverage-remained-comparatively-stable">Liquidity and leverage remained comparatively stable</h2>
+<p>Malaysia’s median current ratio stays close to 2.0, meaning the typical observed firm held about twice as many current assets as current liabilities. Australia’s median is also above 2 in much of the period, although its spread is wider. Median leverage is close to one third in both groups and falls slightly by 2021; median solvency remains above 60%.</p>
+<p>Asset efficiency produces another clear contrast. Malaysia’s median net-assets turnover declines from about 0.61 in 2017 to 0.53 in 2020. Australia begins around 0.32 and reaches about 0.23 in 2020. Both samples become less efficient in the shock year, but the Australian level is lower throughout.</p>
+</section>
+<section id="interpretation-and-limits" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-and-limits">Interpretation and limits</h2>
+<p>The most defensible conclusion is about financial risk profiles in these two cleaned samples. Malaysian firms cluster more tightly around positive margins and stable liquidity. Australian firms show a broader range of outcomes and a large loss-making segment, with 2020 worsening an already weak distribution.</p>
+<p>This is exploratory evidence, not a causal estimate of COVID-19. OSIRIS coverage and missingness differ by country and industry; the sample contains listed companies only; interpolation and ratio reconstruction can affect the distributions; and there is no matched counterfactual for what performance would have been without the pandemic. A stronger causal design would match firms by industry and size, track a balanced panel and test whether changes around 2020 differ after controlling for prior trends.</p>
+</section>
+<section id="technical-appendix-and-original-group-report" class="level2 technical-appendix">
+<h2 class="anchored" data-anchor-id="technical-appendix-and-original-group-report">Technical appendix and original group report</h2>
+<p>The complete report includes missing-data analysis, the ratio dictionary, industry comparisons, correlation matrices, interactive charts, spatial maps and the full cleaning workflow.</p>
 <div class="assignment-actions">
-<p><a href="report.html" class="btn btn-primary" target="_blank">Open the complete report</a> <a href="https://github.com/etc5521-2025/project-part-1-emu" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
+<p><a href="report.html" class="btn btn-primary" target="_blank">Read the complete original report</a> <a href="https://github.com/etc5521-2025/project-part-1-emu" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
 </div>
 </section>
-<section id="complete-report" class="level2">
-<h2 class="anchored" data-anchor-id="complete-report">Complete report</h2>
-<p>The original group report is embedded below with its interactive tables, charts, maps, and code intact.</p>
-</section>
-</div>
-<div class="assignment-report-shell">
-<iframe class="assignment-report" src="report.html" title="Australia and Malaysia corporate performance — complete report" loading="lazy">
-</iframe>
 </div>
 
 

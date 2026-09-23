@@ -8,9 +8,9 @@
 
 <meta name="author" content="Caoyu Shao">
 <meta name="dcterms.date" content="2025-06-06">
-<meta name="description" content="A panel-data study of provincial GDP per capita, growth, regional inequality, and convergence in China.">
+<meta name="description" content="A panel-data report on provincial GDP per capita, regional inequality and economic convergence in China.">
 
-<title>Provincial Development and Economic Convergence in China – Caoyu Shao</title>
+<title>China’s Provinces Converged Rapidly, Then Progress Slowed – Caoyu Shao</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -131,16 +130,19 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Provincial Development and Economic Convergence in China</h1>
+<h1 class="title">China’s Provinces Converged Rapidly, Then Progress Slowed</h1>
+<p class="subtitle lead">Provincial GDP per capita, regional dispersion and growth dynamics</p>
   <div class="quarto-categories">
     <div class="quarto-category">University Assignment</div>
     <div class="quarto-category">Economics</div>
@@ -151,12 +153,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    A panel-data study of provincial GDP per capita, growth, regional inequality, and convergence in China.
+    A panel-data report on provincial GDP per capita, regional inequality and economic convergence in China.
   </div>
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -180,28 +182,102 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="assignment-intro">
-<p>This project examines whether economic development across mainland China’s provinces shows a cumulative “Matthew effect” or a movement toward regional convergence. It assembles provincial data on GDP, population, industrial structure, investment, urbanisation, education, and trade, then combines descriptive measures with panel regression and spatial analysis.</p>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key findings</h2>
+<div class="report-article">
+<div class="report-lede">
+<p>China’s provincial economies became more similar in GDP per person through much of the 2000s and early 2010s. Three dispersion measures decline together, and a panel model finds that provinces starting from a lower income level subsequently grew faster. Convergence is real in the observed data, but it is incomplete: the decline in dispersion slows in the later years and large regional gaps remain.</p>
+</div>
+<section id="executive-summary" class="level2 executive-summary">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive summary</h2>
 <ul>
-<li>Dispersion measures and the estimated relationship between initial income and subsequent growth support provincial convergence in GDP per capita.</li>
-<li>Industrial structure and trade openness help explain differences in provincial growth, while some controls are not statistically distinguishable from zero in the fitted model.</li>
-<li>Regional gaps remain substantial even as the longer-run national pattern points toward convergence.</li>
-<li>The animated provincial map and comparisons of representative provinces show that convergence can coexist with very different development paths.</li>
+<li><strong>All three inequality measures—coefficient of variation, standard deviation of log GDP per capita and the Theil index—decline over the main study period.</strong> The sharpest convergence occurs before the mid-2010s.</li>
+<li><strong>The panel estimate supports conditional beta convergence.</strong> Lagged log GDP per capita has a coefficient of −0.698 in the fitted model (<code>p &lt; 0.001</code>), meaning lower-income provinces tend to grow faster after the included controls.</li>
+<li><strong>Industrial structure and trade openness are positively associated with growth.</strong> Urbanisation, education share and fixed-asset investment growth are not statistically distinguishable from zero in this specification.</li>
 </ul>
+</section>
+<section id="the-economic-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-economic-question">The economic question</h2>
+<p>The project tests two competing stories. A cumulative-advantage or “Matthew effect” would allow already-rich coastal provinces to pull ever farther ahead. Convergence would mean that provinces with lower starting income grow faster and that the cross-provincial distribution of GDP per person becomes less dispersed.</p>
+<p>The dataset joins provincial GDP and population with measures of secondary and tertiary industry, urbanisation, trade, education spending and fixed-asset investment. GDP per capita is the central outcome because total provincial GDP is strongly affected by population and administrative boundaries. The analysis combines time-series comparisons, regional maps, dispersion indices and fixed-effects regression.</p>
+<div class="metric-grid">
+<div class="metric-card">
+<div class="metric-value">
+<p>−0.698</p>
+</div>
+<div class="metric-label">
+<p>coefficient on lagged log GDP per capita in the panel model</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>1.103</p>
+</div>
+<div class="metric-label">
+<p>estimated coefficient on trade share (<code>p &lt; 0.01</code>)</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>3 measures</p>
+</div>
+<div class="metric-label">
+<p>of provincial dispersion point in the same direction</p>
+</div>
+</div>
+</div>
+</section>
+<section id="dispersion-fell-across-several-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="dispersion-fell-across-several-definitions">Dispersion fell across several definitions</h2>
+<p>No single inequality index determines the conclusion. The report calculates the coefficient of variation in GDP per capita, the standard deviation of log GDP per capita and the Theil index. Each measure responds differently to the distribution, yet all three fall substantially before flattening in the later years.</p>
+<div id="fig-china-dispersion" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three line charts showing declining provincial GDP per capita dispersion, followed by a later plateau.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-china-dispersion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Assignment4_files/figure-html/Different_dispersion_index_by_year-1.png" class="img-fluid figure-img" alt="Three line charts showing declining provincial GDP per capita dispersion, followed by a later plateau.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-china-dispersion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Provincial GDP-per-capita dispersion over time using the coefficient of variation, standard deviation of logs and Theil index.
+</figcaption>
+</figure>
+</div>
+<p>The common direction strengthens the case for sigma convergence: the provincial distribution became less unequal. The later plateau is equally important. It suggests that the rapid catch-up phase did not continue at the same pace and that remaining gaps may be harder to close.</p>
+</section>
+<section id="catch-up-did-not-produce-one-uniform-path" class="level2">
+<h2 class="anchored" data-anchor-id="catch-up-did-not-produce-one-uniform-path">Catch-up did not produce one uniform path</h2>
+<p>Representative provinces show how convergence can coexist with very different trajectories. Coastal Shandong remains above the national series, central Henan follows a steadier middle path, Guizhou accelerates from a lower base and Liaoning’s relative position weakens.</p>
+<div id="fig-china-provinces" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Lines comparing GDP per capita in Guizhou, Henan, Liaoning, Shandong and the national series from 2000 to 2023.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-china-provinces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Assignment4_files/figure-html/Time_series_comparison_of_typical_provinces-1.png" class="img-fluid figure-img" alt="Lines comparing GDP per capita in Guizhou, Henan, Liaoning, Shandong and the national series from 2000 to 2023.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-china-provinces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: GDP per capita for selected provinces and the national comparison, 2000–2023.
+</figcaption>
+</figure>
+</div>
+<p>The figure shows why convergence should not be confused with equality. Provincial levels remain separated, and provinces reach the national path through different mixes of industrial change, investment, migration and trade exposure.</p>
+</section>
+<section id="the-growth-model-supports-conditional-convergence" class="level2">
+<h2 class="anchored" data-anchor-id="the-growth-model-supports-conditional-convergence">The growth model supports conditional convergence</h2>
+<p>The fixed-effects model relates provincial GDP-per-capita growth to the previous year’s log GDP per capita and the available controls. The lagged-income coefficient is −0.698 (<code>p &lt; 0.001</code>). Its negative sign is the standard beta-convergence result: after accounting for the modelled characteristics, provinces with higher starting income tend to grow more slowly.</p>
+<p>The ratio of secondary- to tertiary-industry growth is positive at 0.308 (<code>p &lt; 0.001</code>), and trade share is positive at 1.103 (<code>p &lt; 0.01</code>). The estimated coefficients for urbanisation (0.004, <code>p = 0.114</code>), education share (−0.557, <code>p = 0.529</code>) and fixed-asset investment growth (0.00024, <code>p = 0.119</code>) do not meet the conventional 5% significance threshold.</p>
+<p>These estimates describe conditional associations within the assembled panel. They do not prove that changing industrial composition or trade share by one unit would mechanically cause the stated growth change.</p>
+</section>
+<section id="why-convergence-may-have-occurred" class="level2">
+<h2 class="anchored" data-anchor-id="why-convergence-may-have-occurred">Why convergence may have occurred</h2>
+<p>Several mechanisms are consistent with the pattern. Labour migration can raise output in receiving provinces while increasing capital and land per remaining worker in sending provinces. Industrial transfer and infrastructure investment can spread productive capacity inland. National programmes aimed at central and western development may also reduce geographic barriers to growth.</p>
+<p>The analysis does not identify the contribution of each mechanism. It instead shows the outcome they would need to explain: broad catch-up, strong enough to reduce dispersion, followed by a slower phase in which persistent coastal–inland differences remain.</p>
+</section>
+<section id="limits-and-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="limits-and-conclusion">Limits and conclusion</h2>
+<p>The controls do not share the same time coverage. Fixed-asset investment growth is available only for 2018–2023, urbanisation begins in 2005 and other series begin in different years. Complete-case estimation can therefore concentrate the regression on a shorter and selected period. Provincial price differences, revisions to official statistics and spatial dependence are also outside the model.</p>
+<p>Within those limits, the descriptive and regression evidence agree: provincial GDP per capita converged, particularly during the earlier part of the study period. The most useful policy question is now less whether catch-up happened and more why it slowed—and which remaining regional constraints prevent the next stage.</p>
+</section>
+<section id="technical-appendix-and-original-submission" class="level2 technical-appendix">
+<h2 class="anchored" data-anchor-id="technical-appendix-and-original-submission">Technical appendix and original submission</h2>
+<p>The complete report preserves the variable dictionary, data joins, maps, animation, collinearity checks, model output and source discussion.</p>
 <div class="assignment-actions">
-<p><a href="Assignment4.html" class="btn btn-primary" target="_blank">Open the complete report</a> <a href="https://github.com/shaocaoyu-01/Report-on-China-Provincial-development" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
+<p><a href="Assignment4.html" class="btn btn-primary" target="_blank">Read the complete original report</a> <a href="china_gdp_per_capita.gif" class="btn btn-outline-primary" target="_blank">Open the provincial animation</a> <a href="https://github.com/shaocaoyu-01/Report-on-China-Provincial-development" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
 </div>
 </section>
-<section id="complete-report" class="level2">
-<h2 class="anchored" data-anchor-id="complete-report">Complete report</h2>
-<p>The original report is embedded below with its figures, animation, models, references, and supporting discussion intact.</p>
-</section>
-</div>
-<div class="assignment-report-shell">
-<iframe class="assignment-report" src="Assignment4.html" title="China provincial development — complete report" loading="lazy">
-</iframe>
 </div>
 
 

@@ -1,37 +1,110 @@
 ---
-title: "Has Water Quality in the Yarra River Improved?"
+title: "Yarra River pH Rose, While Salinity and Nitrogen Changed Little"
+subtitle: "A careful comparison of monitoring records from the early 1990s and the 2020s"
 author: "Caoyu Shao"
 date: "2025-09-01"
-description: "A comparison of pH, conductivity, and nitrogen indicators in the Yarra River between the 1990s and 2020s."
+description: "A qualified assessment of pH, electrical conductivity and nitrogen indicators in the Yarra River across two monitoring periods."
 categories: [University Assignment, Data Analysis, Environment, Water Quality]
-page-layout: full
-toc: false
+image: figures/figure-01.png
+page-layout: article
+toc: true
+toc-title: "In this report"
 resources:
   - report.html
   - assignment.css
+  - "figures/**"
 ---
 
-::: {.assignment-intro}
-This report investigates whether water quality in the Yarra River changed between the early 1990s and the 2020s. It begins with a detailed audit of site coverage and parameter availability, then focuses on pH, electrical conductivity at 25°C, and nitrogen as indicators that can support a meaningful comparison across the two periods.
+::: {.report-article}
+::: {.report-lede}
+The Yarra River monitoring record shows a clear rise in pH between the early 1990s and the 2020s. The other two comparable indicators tell a quieter story: electrical conductivity is slightly higher on average, while a reconstructed total-nitrogen measure is slightly lower. Their confidence intervals overlap. The evidence therefore supports a change in river chemistry, but not a broad claim that every aspect of water quality improved.
+:::
 
-## Key findings
+::: {.executive-summary}
+## Executive summary
 
-- Many candidate measures could not support a historical comparison because they were observed in only one period or had too few records.
-- The estimated mean nitrogen level fell from 1.12 in the 1990s to 1.05 in the 2020s, with overlapping confidence intervals.
-- Taken together, the pH, conductivity, and nitrogen evidence suggests an overall improvement in water quality, while the report keeps the limitations of uneven monitoring data visible.
+- **pH provides the strongest evidence of change.** The estimated mean rose from 6.74–7.00 in the early 1990s to 7.33–7.46 in the 2020s, based on 95% confidence intervals.
+- **Electrical conductivity did not clearly improve.** Its mean increased from 184 to 193 µS/cm at 25°C, with overlapping confidence intervals of 162–207 and 179–208.
+- **Nitrogen moved slightly downward, with substantial uncertainty.** The total-nitrogen proxy fell from 1.12 to 1.05 mg/L as N; the two 95% confidence intervals also overlap.
+:::
 
-The project also uses visual inference to evaluate whether apparent differences could plausibly arise after permuting the period labels.
+## The question and the monitoring record
+
+The report asks whether water quality in the Yarra River changed over roughly three decades. The cleaned monitoring data contain many parameters, sites and dates, but not every measure is observed consistently in both periods. The defensible comparison is therefore narrower than the full database.
+
+Three indicators had enough common coverage to examine:
+
+1. **pH**, which describes acidity or alkalinity;
+2. **electrical conductivity at 25°C (EC)**, a broad indicator of dissolved salts and ions; and
+3. **nitrogen**, represented by observed total nitrogen or a proxy formed from nitrogen as NOx plus total Kjeldahl nitrogen when needed.
+
+The analysis compares records from 1990–1994 with records from 2020–2025. It uses distributions, time plots and confidence intervals rather than relying on a single average.
+
+::: {.metric-grid}
+::: {.metric-card}
+::: {.metric-value}
+6.87 → 7.40
+:::
+::: {.metric-label}
+approximate pH mean, from the midpoint of each reported interval
+:::
+:::
+::: {.metric-card}
+::: {.metric-value}
+184 → 193
+:::
+::: {.metric-label}
+mean EC in µS/cm at 25°C
+:::
+:::
+::: {.metric-card}
+::: {.metric-value}
+1.12 → 1.05
+:::
+::: {.metric-label}
+mean total-nitrogen proxy in mg/L as N
+:::
+:::
+:::
+
+## pH shifted upward
+
+The pH observations are visibly higher in the 2020s than in the early 1990s. The estimated mean for the earlier period has a 95% confidence interval of 6.74–7.00; the corresponding interval for the 2020s is 7.33–7.46. Because these intervals do not overlap, pH is the clearest signal in the report.
+
+![Yarra River pH observations in the early 1990s and the 2020s, with smoothed period trends.](figures/figure-01.png){#fig-yarra-ph fig-alt="Scatter plots of Yarra River pH over time for the early 1990s and 2020s, showing higher values in the recent period."}
+
+The result should be described as a shift toward more alkaline readings. Whether that is environmentally beneficial depends on site-specific guidelines, natural background conditions and biological responses; pH alone is not an overall water-quality score.
+
+## Conductivity shows no clear improvement
+
+Electrical conductivity is more variable in the recent observations. Its mean rises from 184 µS/cm in the 1990s to 193 µS/cm in the 2020s, and its standard deviation rises from 75 to 100. The 95% confidence intervals—162–207 and 179–208—overlap widely.
+
+![Distribution of electrical conductivity in the two monitoring periods, shown on a logarithmic scale.](figures/figure-04.png){#fig-yarra-ec fig-alt="Violin and box plots of electrical conductivity for the 1990s and 2020s."}
+
+The box plots suggest a lower recent median even though the recent mean is slightly higher. That combination is consistent with a right-skewed distribution containing some large recent values. It is a useful example of why one statistic should not carry the conclusion: the typical observation may have shifted down, while high readings keep the mean elevated.
+
+## Nitrogen is slightly lower, but the comparison is fragile
+
+For nitrogen, the analysis combines total nitrogen where available with NOx plus total Kjeldahl nitrogen as a proxy. The mean is 1.12 mg/L as N in the 1990s and 1.05 in the 2020s. The reported 95% intervals are approximately 1.02–1.23 and 0.94–1.17, so the data are consistent with a modest decline as well as little change.
+
+![Distributions of NOx, total Kjeldahl nitrogen and the total-nitrogen proxy by period.](figures/figure-05.png){#fig-yarra-nitrogen fig-alt="Faceted violin and box plots comparing nitrogen measures between the 1990s and 2020s."}
+
+Only two recent total Kjeldahl nitrogen observations were available in the processed data. The proxy makes a comparison possible, but the result depends on how components were combined and on which dates contain the required measurements. It should be treated as indicative rather than definitive.
+
+## What can—and cannot—be concluded
+
+The evidence supports a clear rise in pH. It does not show a similarly clear improvement in conductivity, and the nitrogen decrease is small relative to its uncertainty. A balanced conclusion is that the Yarra’s measured chemistry differs between the two periods, with the strongest change in pH and mixed evidence elsewhere.
+
+The comparison is observational. Monitoring sites, sampling frequency and parameter availability differ across decades, so a period difference can reflect changes in the monitoring network as well as changes in the river. A stronger follow-up would match sites and seasons, model repeated observations explicitly, and report guideline exceedances for each river reach.
+
+::: {.technical-appendix}
+## Technical appendix and original submission
+
+The original report contains the site and parameter audit, data transformations, interactive summary tables, permutation line-ups and complete R workflow.
 
 ::: {.assignment-actions}
-[Open the complete report](report.html){.btn .btn-primary target="_blank"}
+[Read the complete original report](report.html){.btn .btn-primary target="_blank"}
 [View the source repository](https://github.com/shaocaoyu-01/Yarra_river-water-quality-report){.btn .btn-outline-secondary target="_blank"}
 :::
-
-## Complete report
-
-The original submitted report is embedded below with its figures, statistical analysis, and code intact.
 :::
-
-::: {.assignment-report-shell}
-<iframe class="assignment-report" src="report.html" title="Yarra River water quality — complete report" loading="lazy"></iframe>
 :::

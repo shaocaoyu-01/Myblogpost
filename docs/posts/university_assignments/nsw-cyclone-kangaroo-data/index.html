@@ -8,9 +8,9 @@
 
 <meta name="author" content="Caoyu Shao">
 <meta name="dcterms.date" content="2025-11-02">
-<meta name="description" content="Two documented workflows for collecting, cleaning, validating, and citing open NSW data.">
+<meta name="description" content="A case-study report on collecting, cleaning and documenting NSW traffic incidents and eastern grey kangaroo records.">
 
-<title>Reproducible NSW Data Workflows – Caoyu Shao</title>
+<title>From Open Portals to Research-Ready Data – Caoyu Shao</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,10 +76,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -131,17 +133,19 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reproducible NSW Data Workflows</h1>
-<p class="subtitle lead">Cyclone-related traffic incidents and eastern grey kangaroo sightings</p>
+<h1 class="title">From Open Portals to Research-Ready Data</h1>
+<p class="subtitle lead">Two reproducible NSW workflows for disaster impacts and wildlife observations</p>
   <div class="quarto-categories">
     <div class="quarto-category">University Assignment</div>
     <div class="quarto-category">Data Wrangling</div>
@@ -152,12 +156,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Two documented workflows for collecting, cleaning, validating, and citing open NSW data.
+    A case-study report on collecting, cleaning and documenting NSW traffic incidents and eastern grey kangaroo records.
   </div>
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -181,28 +185,145 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="assignment-intro">
-<p>This assignment develops two reproducible data workflows. The first processes NSW Live Traffic records connected with ex-Tropical Cyclone Alfred near Lismore. The second retrieves eastern grey kangaroo occurrence records from the Atlas of Living Australia and documents the resulting biodiversity dataset.</p>
-<section id="what-the-project-demonstrates" class="level2">
-<h2 class="anchored" data-anchor-id="what-the-project-demonstrates">What the project demonstrates</h2>
+<div class="report-article">
+<div class="report-lede">
+<p>Open data become useful evidence only when their scope, transformations and weaknesses are explicit. This project develops two such workflows: one isolates road disruptions near Lismore during ex-Tropical Cyclone Alfred, and the other retrieves eastern grey kangaroo observations across New South Wales. Together they turn a manual government download and an API query into documented, analysis-ready tables.</p>
+</div>
+<section id="executive-summary" class="level2 executive-summary">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive summary</h2>
 <ul>
-<li>A clear separation between downloaded raw files and analysis-ready processed data.</li>
-<li>Repeatable filtering, date handling, geographic scoping, and field selection in R.</li>
-<li>Documentation of data provenance, licensing, citations, and the manual steps needed to reproduce each download.</li>
+<li><strong>The traffic workflow produces 1,076 incident-version records across 292 location descriptions.</strong> Flooding, water over road and fallen trees account for most rows.</li>
+<li><strong>The biodiversity workflow produces 82,217 eastern grey kangaroo records from 2019–2025.</strong> It retains observation date, coordinates, scientific name and data provider.</li>
+<li><strong>Both outputs are reproducible but observational.</strong> Traffic reports overrepresent busy roads and repeated updates; wildlife sightings reflect where and when people or monitoring programmes looked.</li>
 </ul>
-<p>Together, the case studies show how open government and biodiversity data can be turned into transparent, auditable research inputs.</p>
+</section>
+<section id="why-the-workflow-is-the-result" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-workflow-is-the-result">Why the workflow is the result</h2>
+<p>This assignment is about data provenance rather than estimating an effect. Its central question is: can another analyst understand where the data came from, repeat the selection and identify what each row represents?</p>
+<p>The two cases deliberately use different acquisition methods. Live Traffic NSW requires a portal search and CSV download. The Atlas of Living Australia (ALA) exposes a query through the <code>galah</code> R package. The same principles apply to both: preserve the source, define the population, transform fields explicitly, save a narrow processed table and record the limitations.</p>
+<div class="metric-grid">
+<div class="metric-card">
+<div class="metric-value">
+<p>1,076 rows</p>
+</div>
+<div class="metric-label">
+<p>cyclone-related traffic records after filtering</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>82,217 rows</p>
+</div>
+<div class="metric-label">
+<p>eastern grey kangaroo occurrence records</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>0 missing</p>
+</div>
+<div class="metric-label">
+<p>values in the retained fields of both processed files</p>
+</div>
+</div>
+</div>
+</section>
+<section id="case-study-1-road-disruption-near-lismore" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-1-road-disruption-near-lismore">Case study 1: road disruption near Lismore</h2>
+<p>The Live Traffic NSW search covers a 50-kilometre radius around Lismore and a portal window ending 22 March 2025. The raw CSV includes six metadata lines before the tabular header. The workflow preserves that file, skips the metadata during import, parses the created time in the Sydney time zone and then limits the analysis to the cyclone-impact period.</p>
+<p>No records contained “Alfred” in the title, so a keyword search alone could not identify the relevant rows. The final rule combines the date filter with incident categories plausibly connected to extreme weather: flooding, water over road, fallen trees, cyclone, road damage, wires down, debris, landslide, road closure and emergency roadwork.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Live Traffic NSW portal] --&gt; B[50 km around Lismore]
+  B --&gt; C[Raw CSV plus portal metadata]
+  C --&gt; D[Parse created time]
+  D --&gt; E[Restrict cyclone-impact dates]
+  E --&gt; F[Filter weather-related titles]
+  F --&gt; G[Select six documented fields]
+  G --&gt; H[Processed CSV]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The processed file contains 1,076 rows, 292 distinct location strings and 285 coordinate pairs. The leading categories are flooding (331 rows), adverse-weather water over road (288) and fallen tree (231). Together they make up 850 rows, or 79% of the output.</p>
+<p>The row count is not a count of independent physical incidents. The <code>Version</code> field shows that the portal records updates to the same event; one fallen-tree example appears as five successive versions. The table is therefore well suited to reconstructing the information stream and locating disruptions, but it needs entity resolution before anyone reports “number of incidents.”</p>
+</section>
+<section id="case-study-2-eastern-grey-kangaroo-occurrences" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-2-eastern-grey-kangaroo-occurrences">Case study 2: eastern grey kangaroo occurrences</h2>
+<p>The second workflow calls the ALA directly. It identifies <em>Macropus giganteus</em>, restricts records to New South Wales and the years 2019–2025, collects the basic occurrence fields and writes a five-column processed file.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[ALA occurrence API] --&gt; B[Macropus giganteus]
+  B --&gt; C[NSW, 2019–2025]
+  C --&gt; D[Collect basic records]
+  D --&gt; E[Keep date and coordinates]
+  E --&gt; F[Keep scientific name and provider]
+  F --&gt; G[Processed CSV]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The result contains 82,217 rows from ten named data resources. NSW BioNet Atlas contributes 73,813 records, about 90% of the total; iNaturalist Australia contributes 4,968. The retained coordinates span the expected breadth of New South Wales, and none of the five output fields is missing.</p>
+<p>Annual record counts range from 20,222 in 2019 to 10,049 in 2024, while 2025 contains only 1,633 records because the collection was made partway through the year. These counts measure submitted observations, not kangaroo abundance. Changes can reflect survey effort, platform use, project coverage and reporting delay.</p>
+</section>
+<section id="what-each-dataset-can-support" class="level2">
+<h2 class="anchored" data-anchor-id="what-each-dataset-can-support">What each dataset can support</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Row represents</th>
+<th>Strong use</th>
+<th>Main risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Live Traffic NSW</td>
+<td>A published version of a traffic disruption record</td>
+<td>Reconstructing disruption types, locations and updates</td>
+<td>Duplicate versions and uneven reporting by road traffic</td>
+</tr>
+<tr class="even">
+<td>Atlas of Living Australia</td>
+<td>A contributed species occurrence</td>
+<td>Mapping observation coverage and preparing ecological samples</td>
+<td>Uneven observer effort, accessibility and positional accuracy</td>
+</tr>
+</tbody>
+</table>
+<p>Both workflows retain the source’s original meaning instead of silently converting records into claims. Traffic rows are reports, not a census of storm damage. ALA rows are occurrences, not a population survey. That distinction determines which later analyses are valid.</p>
+</section>
+<section id="reproducibility-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-assessment">Reproducibility assessment</h2>
+<p>The project records the portal settings, query filters, selected variables, licence expectations and citations. It also separates the raw traffic download from the processed output. Those choices make the work auditable.</p>
+<p>Three changes would strengthen it further. First, save the exact retrieval timestamp and an immutable query identifier for every source. Second, add automated validation for date ranges, coordinate bounds and duplicate event versions. Third, publish a machine-readable data dictionary beside each CSV. For the traffic data, a documented incident-level key would also prevent updated versions from being counted as separate events.</p>
+</section>
+<section id="technical-appendix-and-original-submission" class="level2 technical-appendix">
+<h2 class="anchored" data-anchor-id="technical-appendix-and-original-submission">Technical appendix and original submission</h2>
+<p>The original assignment contains the R code, detailed download instructions, variable descriptions, licence notes, citations and AI-use acknowledgement.</p>
 <div class="assignment-actions">
-<p><a href="assignment1_35323876.html" class="btn btn-primary" target="_blank">Open the complete report</a> <a href="https://github.com/shaocaoyu-01/NSW_hurricane_influence_results" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
+<p><a href="assignment1_35323876.html" class="btn btn-primary" target="_blank">Read the complete original report</a> <a href="https://github.com/shaocaoyu-01/NSW_hurricane_influence_results" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
 </div>
 </section>
-<section id="complete-report" class="level2">
-<h2 class="anchored" data-anchor-id="complete-report">Complete report</h2>
-<p>The original report is embedded below with its code, tables, links, and citations intact.</p>
-</section>
-</div>
-<div class="assignment-report-shell">
-<iframe class="assignment-report" src="assignment1_35323876.html" title="Reproducible NSW Data Workflows — complete report" loading="lazy">
-</iframe>
 </div>
 
 

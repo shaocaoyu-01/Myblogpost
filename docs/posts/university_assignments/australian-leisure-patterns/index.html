@@ -8,9 +8,9 @@
 
 <meta name="author" content="Caoyu Shao">
 <meta name="dcterms.date" content="2025-09-22">
-<meta name="description" content="An exploration of how leisure participation and time use vary across gender and generations in Australia.">
+<meta name="description" content="A report on generational and gender differences in Australian leisure participation, with historical context from national time-use surveys.">
 
-<title>How Australians Spend Their Spare Time – Caoyu Shao</title>
+<title>Australian Leisure Is Divided by Age and Gender – Caoyu Shao</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -131,16 +130,19 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How Australians Spend Their Spare Time</h1>
+<h1 class="title">Australian Leisure Is Divided by Age and Gender</h1>
+<p class="subtitle lead">What the 2022 ABS survey—and three earlier time-use snapshots—reveal</p>
   <div class="quarto-categories">
     <div class="quarto-category">University Assignment</div>
     <div class="quarto-category">Data Analysis</div>
@@ -151,12 +153,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    An exploration of how leisure participation and time use vary across gender and generations in Australia.
+    A report on generational and gender differences in Australian leisure participation, with historical context from national time-use surveys.
   </div>
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -180,28 +182,101 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="assignment-intro">
-<p>This project uses Australian Bureau of Statistics leisure and time-use data to study how recreational choices differ across generations and gender. It examines active and passive pursuits, tests whether activities form a typical leisure mix, and places claims about declining reading in a broader population context.</p>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key findings</h2>
+<div class="report-article">
+<div class="report-lede">
+<p>Australians do not share one typical leisure routine. Age and gender shape which activities people choose, but the pattern changes from one activity to another. Digital gaming shows the clearest male advantage among younger people, reading and social interaction lean female, and older cohorts participate more in several passive activities. Historical time-use data also suggest that social and community interaction lost ground between 1992 and 2006.</p>
+</div>
+<section id="executive-summary" class="level2 executive-summary">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive summary</h2>
 <ul>
-<li>Gender gaps are strongest for some digital and social activities, but their size and direction vary by generation.</li>
-<li>Older cohorts participate more in several passive activities, while younger cohorts show stronger participation in active pursuits and digital games.</li>
-<li>Historical time-use data point to more time spent on care, work, and personal activities, alongside a decline in social and community interaction.</li>
+<li><strong>The largest visible gender gap is in digital gaming.</strong> Among Generation Z, male participation is about 30 percentage points higher than female participation; the gap narrows in older cohorts.</li>
+<li><strong>Age does not divide leisure into two simple camps.</strong> Digital gaming declines sharply with age, while reading and several home-based activities become more common. Exercise and social interaction are comparatively stable across cohorts.</li>
+<li><strong>The long-run comparison points to a reallocation of time.</strong> In the three historical snapshots, social and community interaction fell from about 110 minutes per day in 1992 to roughly 45 minutes in 1997 and 2006, while employment and child-care time increased.</li>
 </ul>
-<p>The analysis reshapes multiple ABS worksheets into tidy panel data and uses exploratory graphics, heat maps, correlations, and regression diagnostics to compare patterns.</p>
+</section>
+<section id="the-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-question">The question</h2>
+<p>This study asks how leisure participation differs across Australian generations and between men and women. It also asks whether activities form a common “leisure mix” and whether the 2022 cross-section fits the longer history of Australian time use.</p>
+<p>The main evidence comes from the Australian Bureau of Statistics 2022 leisure tables. Five cohorts are compared: Generation Z, Millennials, Generation X, Baby Boomers and the Interwar generation. Participation is the share of a group reporting an activity; time is measured in minutes. A second ABS dataset supplies national snapshots for 1992, 1997 and 2006.</p>
+<div class="metric-grid">
+<div class="metric-card">
+<div class="metric-value">
+<p>5 cohorts</p>
+</div>
+<div class="metric-label">
+<p>compared by activity and gender in the 2022 data</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>≈30 pp</p>
+</div>
+<div class="metric-label">
+<p>Gen Z male advantage in digital-game participation</p>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">
+<p>3 years</p>
+</div>
+<div class="metric-label">
+<p>in the historical time-use comparison: 1992, 1997 and 2006</p>
+</div>
+</div>
+</div>
+</section>
+<section id="gender-differences-depend-on-the-activity" class="level2">
+<h2 class="anchored" data-anchor-id="gender-differences-depend-on-the-activity">Gender differences depend on the activity</h2>
+<p>The heat map reports the male participation rate minus the female rate. Red cells indicate higher male participation and blue cells higher female participation. A value near zero means that participation is similar.</p>
+<div id="fig-leisure-gender-gap" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A heat map comparing male minus female leisure participation across five Australian generations and multiple activities.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-leisure-gender-gap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/figure-02.png" class="img-fluid figure-img" alt="A heat map comparing male minus female leisure participation across five Australian generations and multiple activities.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leisure-gender-gap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Gender gap in leisure participation by activity and generation. Positive values indicate higher male participation; negative values indicate higher female participation.
+</figcaption>
+</figure>
+</div>
+<p>Digital gaming stands out: the male advantage is largest among Generation Z and then contracts across older cohorts. Watching television and videos also tends to lean male, although the gap is smaller. Reading, hobbies and arts, relaxing, religious or cultural practice, and social interaction generally lean female.</p>
+<p>The mixed cells matter as much as the strong ones. Exercise moves around parity across cohorts, and eating or drinking out does not show a consistent gender direction. Gender therefore predicts some leisure choices well, but it is not a single ranking that applies to every age group.</p>
+</section>
+<section id="generational-change-is-selective" class="level2">
+<h2 class="anchored" data-anchor-id="generational-change-is-selective">Generational change is selective</h2>
+<p>The 2022 comparison shows a steep age gradient for digital games: participation is around one fifth among Generation Z and falls to the low single digits among older cohorts. Reading moves in the opposite direction, rising from roughly one in ten younger respondents to close to one half of the Interwar cohort. General internet and device use is highest among younger people, while hobbies, arts, radio and puzzles become more prominent in older groups.</p>
+<p>Exercise, sport and outdoor activity do not collapse with age in the way the digital categories do. Social interaction also remains comparatively stable. This weakens any simple claim that young people are “active” and older people “passive.” The evidence supports a change in the composition of leisure, with some activities strongly age-graded and others shared more evenly.</p>
+<div class="report-note">
+<p>The “active” and “passive” labels are analytical groupings created for this assignment. Digital games were placed in the active group in the original analysis, even though other classifications are possible. The activity-level results are therefore more reliable than a broad active-versus-passive total.</p>
+</div>
+</section>
+<section id="time-use-changed-well-before-2022" class="level2">
+<h2 class="anchored" data-anchor-id="time-use-changed-well-before-2022">Time use changed well before 2022</h2>
+<p>The historical comparison puts the cohort findings in context. It covers three survey years rather than a continuous annual series, so it shows large shifts between snapshots rather than a precise trend line.</p>
+<div id="fig-leisure-history" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Small multiple line charts comparing minutes per day for major activities in 1992, 1997 and 2006.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-leisure-history-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/figure-06.png" class="img-fluid figure-img" alt="Small multiple line charts comparing minutes per day for major activities in 1992, 1997 and 2006.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leisure-history-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Average daily time by activity in the 1992, 1997 and 2006 ABS time-use surveys.
+</figcaption>
+</figure>
+</div>
+<p>Several changes are visible. Employment-related time rose from about 197 to 207 minutes per day. Child care increased from roughly 32 to 41 minutes, and personal care also rose. Recreation and leisure peaked near 268 minutes in 1997 before returning to about 252 minutes in 2006. The sharpest shift is social and community interaction, which fell from around 110 minutes in 1992 to about 45 minutes in both later surveys.</p>
+<p>These figures describe population averages. They do not show that the same individuals replaced social time with work or care, and survey design or activity coding may also have changed. They do show that the social setting around leisure was already changing long before the 2022 cohort comparison.</p>
+</section>
+<section id="what-the-evidence-says" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-evidence-says">What the evidence says</h2>
+<p>Australian leisure is structured by both life stage and gender, but no single divide explains the whole pattern. Digital participation produces the clearest generational and gender contrasts. Reading and several home-based pursuits become more common in older cohorts, while exercise and social interaction are more widely shared. The historical evidence adds a broader shift: less recorded time in social and community interaction and more time in employment, care and personal activities.</p>
+<p>The next analytical step would be to separate age, period and cohort effects using repeated surveys with consistent definitions. The current data cannot tell whether Generation Z will retain its present habits as it ages, or whether its leisure will come to resemble today’s older cohorts.</p>
+</section>
+<section id="technical-appendix-and-original-submission" class="level2 technical-appendix">
+<h2 class="anchored" data-anchor-id="technical-appendix-and-original-submission">Technical appendix and original submission</h2>
+<p>The original submission contains the full data-cleaning workflow, activity definitions, tables, correlation analysis and R code. It remains available for readers who want to audit or reproduce the work.</p>
 <div class="assignment-actions">
-<p><a href="report.html" class="btn btn-primary" target="_blank">Open the complete report</a> <a href="https://github.com/shaocaoyu-01/Australians-spare-time-usage-report" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
+<p><a href="report.html" class="btn btn-primary" target="_blank">Read the complete original report</a> <a href="https://github.com/shaocaoyu-01/Australians-spare-time-usage-report" class="btn btn-outline-secondary" target="_blank">View the source repository</a></p>
 </div>
 </section>
-<section id="complete-report" class="level2">
-<h2 class="anchored" data-anchor-id="complete-report">Complete report</h2>
-<p>The original submitted report is embedded below with its figures, tables, and code intact.</p>
-</section>
-</div>
-<div class="assignment-report-shell">
-<iframe class="assignment-report" src="report.html" title="How Australians Spend Their Spare Time — complete report" loading="lazy">
-</iframe>
 </div>
 
 

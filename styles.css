@@ -24,18 +24,102 @@ code { background: rgba(255,255,255,.12); color: #fff; }
 
 .quarto-title-banner { background-color: #8E1925; color: #fff; }
 
-/* University assignment archive */
-.assignment-intro {
-  max-width: 1080px;
-  margin: 0 auto 1.5rem;
+/* Long-form university reports */
+.report-article {
+  font-size: 1.04rem;
+  line-height: 1.72;
 }
 
-.assignment-intro a:not(.btn) {
+.report-article a:not(.btn) {
   color: #8e1925;
+  text-decoration-color: rgba(142, 25, 37, 0.35);
+  text-underline-offset: 0.15em;
 }
 
-.assignment-intro a:not(.btn):hover {
+.report-article a:not(.btn):hover {
   color: #a61b29;
+  text-decoration-color: currentColor;
+}
+
+.report-lede {
+  margin: 0.25rem 0 1.75rem;
+  color: #374151;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.executive-summary {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 1.4rem 1.1rem;
+  border-left: 0.35rem solid var(--brand-red);
+  border-radius: 0 0.65rem 0.65rem 0;
+  background: #f9f2f3;
+}
+
+.executive-summary h2 {
+  margin-top: 0;
+  color: #721421;
+  font-size: 1.35rem;
+}
+
+.executive-summary li + li {
+  margin-top: 0.55rem;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.metric-card {
+  padding: 1rem 1.05rem;
+  border: 1px solid #e4d5d8;
+  border-radius: 0.65rem;
+  background: #fff;
+  box-shadow: 0 0.2rem 0.65rem rgba(71, 24, 31, 0.06);
+}
+
+.metric-value {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: #8e1925;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.metric-label {
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.report-note {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.55rem;
+  background: #f8fafc;
+  color: #374151;
+}
+
+.report-article img {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.45rem;
+  background: #fff;
+}
+
+.technical-appendix {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.35rem;
+  border-top: 3px solid #8e1925;
+  background: #f8f8f8;
+}
+
+.technical-appendix h2 {
+  margin-top: 0;
 }
 
 .assignment-actions {
@@ -45,29 +129,12 @@ code { background: rgba(255,255,255,.12); color: #fff; }
   margin: 1.25rem 0 1.75rem;
 }
 
-.assignment-report-shell {
-  width: min(1500px, 100%);
-  margin: 0 auto 2rem;
-  padding: 0.5rem;
-  border: 1px solid rgba(142, 25, 37, 0.22);
-  border-radius: 0.75rem;
-  background: #f7f7f7;
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
-}
-
-.assignment-report {
-  display: block;
-  width: 100%;
-  height: 82vh;
-  min-height: 720px;
-  border: 0;
-  border-radius: 0.4rem;
-  background: #fff;
-}
-
 @media (max-width: 768px) {
-  .assignment-report {
-    height: 70vh;
-    min-height: 560px;
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-lede {
+    font-size: 1.08rem;
   }
 }
